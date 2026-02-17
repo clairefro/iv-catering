@@ -4,6 +4,7 @@ const { pathname } = Astro.url;
 const links = [
   { path: "/", text: "Home" },
   { path: "/about", text: "About" },
+  { path: "/menu", text: "Menu" },
   { path: "/gallery", text: "Gallery" },
   { path: "/contact", text: "Contact" },
 ];
@@ -25,28 +26,33 @@ const links = [
 
 <style>
   nav {
-    background: #f8f8f8;
-    padding: 1rem;
+    background: var(--card-bg);
+    padding: 1.2rem 2rem 1.2rem 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-family: "Georgia", "Times New Roman", Times, serif;
+    margin-bottom: 2rem;
   }
   nav ul {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
   }
   nav a {
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 0.25em 0.75em;
+    color: var(--link);
+    font-family: inherit;
+    padding: 0.25em 0.9em;
+    transition: color 0.2s;
   }
   nav a:hover {
-    color: #0077cc;
+    color: var(--link-hover);
   }
   nav a.active {
-    border-radius: 4px;
     text-decoration: underline;
-    /* padding: 0.25em 0.75em; */
+    color: var(--link-hover);
   }
 </style>
