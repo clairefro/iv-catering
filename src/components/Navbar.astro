@@ -10,6 +10,11 @@ const { pathname } = Astro.url;
     </li>
     <li>
       <a href="/menu" class={pathname === "/menu" ? "active" : ""}>Menu</a>
+      <li>
+        <a href="/contact" class={pathname === "/contact" ? "active" : ""}
+          >Contact</a
+        >
+      </li>
     </li>
   </ul>
 </nav>
