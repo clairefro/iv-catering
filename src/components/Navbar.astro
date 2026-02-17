@@ -1,8 +1,16 @@
+---
+const { pathname } = Astro.url;
+---
+
 <nav>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/menu">Menu</a></li>
+    <li><a href="/" class={pathname === "/" ? "active" : ""}>Home</a></li>
+    <li>
+      <a href="/about" class={pathname === "/about" ? "active" : ""}>About</a>
+    </li>
+    <li>
+      <a href="/menu" class={pathname === "/menu" ? "active" : ""}>Menu</a>
+    </li>
   </ul>
 </nav>
 
@@ -22,8 +30,15 @@
     text-decoration: none;
     color: #333;
     font-weight: bold;
+    padding: 0.25em 0.75em;
   }
   nav a:hover {
     color: #0077cc;
+  }
+  nav a.active {
+    color: #fff;
+    background: #0077cc;
+    border-radius: 4px;
+    /* padding: 0.25em 0.75em; */
   }
 </style>
