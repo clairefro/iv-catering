@@ -1,0 +1,184 @@
+---
+import { Image } from "astro:assets";
+// import { getCollection } from "astro:content";
+
+// TODO: Fetch all images from the "gallery" collection
+// const photos = await getCollection("gallery");
+
+// 1. Grab all images from the folder automatically
+// The glob pattern finds all common image formats
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/gallery/*.{jpeg,jpg,png,gif}",
+);
+
+// 2. Convert the object into an array of image imports
+const imagePaths = Object.values(images);
+---
+
+<section class="gallery-section">
+  <div class="gallery-grid">
+    {
+      await Promise.all(
+        imagePaths.map(async (importImage, idx) => {
+          const mod = await importImage();
+          return (
+            <div class="gallery-card">
+              <div class="gallery-img-wrapper">
+                <Image
+                  src={mod.default}
+                  alt={`Gallery image ${idx + 1}`}
+                  width={800}
+                  height={600}
+                  class="gallery-img"
+                />
+                <div class="gallery-img-fullsize" tabindex="-1">
+                  <Image
+                    src={mod.default}
+                    alt={`Gallery image ${idx + 1}`}
+                    width={800}
+                    height={600}
+                    class="gallery-img-full"
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        }),
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .gallery-desc {
+    margin-top: 0.5rem;
+    color: #4b5563;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background: #f3f4f6;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s;
+  }
+  .gallery-card:hover {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+  }
+  .gallery-img {
+    height: 16rem;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+  .gallery-card:hover .gallery-img {
+    transform: scale(1.05);
+  }
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.6) 0%,
+      transparent 100%
+    );
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-card:hover .gallery-overlay {
+    opacity: 1;
+  }
+  .gallery-overlay-title {
+    color: #fff;
+    font-weight: 500;
+  }
+  .gallery-img-fullsize {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .gallery-img-fullsize.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .gallery-img-full {
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+    display: block;
+    margin: auto;
+    object-fit: contain;
+    background: #222;
+    transform: scale(0.95);
+    opacity: 0.7;
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .gallery-img-fullsize.active .gallery-img-full {
+    transform: scale(1);
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".gallery-img-wrapper").forEach((wrapper) => {
+      const thumb = wrapper.querySelector(".gallery-img");
+      const overlay = wrapper.querySelector(".gallery-img-fullsize");
+      if (!thumb || !overlay) return;
+      // Show overlay on click
+      thumb.addEventListener("click", () => {
+        overlay.classList.add("active");
+      });
+      // Hide overlay on click
+      overlay.addEventListener("click", () => {
+        overlay.classList.remove("active");
+      });
+    });
+  });
+</script>

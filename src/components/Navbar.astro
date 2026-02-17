@@ -1,21 +1,25 @@
 ---
 const { pathname } = Astro.url;
+
+const links = [
+  { path: "/", text: "Home" },
+  { path: "/about", text: "About" },
+  { path: "/gallery", text: "Gallery" },
+  { path: "/contact", text: "Contact" },
+];
 ---
 
 <nav>
   <ul>
-    <li><a href="/" class={pathname === "/" ? "active" : ""}>Home</a></li>
-    <li>
-      <a href="/about" class={pathname === "/about" ? "active" : ""}>About</a>
-    </li>
-    <li>
-      <a href="/menu" class={pathname === "/menu" ? "active" : ""}>Menu</a>
-      <li>
-        <a href="/contact" class={pathname === "/contact" ? "active" : ""}
-          >Contact</a
-        >
-      </li>
-    </li>
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.path} class={pathname === link.path ? "active" : ""}>
+            {link.text}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
@@ -41,9 +45,8 @@ const { pathname } = Astro.url;
     color: #0077cc;
   }
   nav a.active {
-    color: #fff;
-    background: #0077cc;
     border-radius: 4px;
+    text-decoration: underline;
     /* padding: 0.25em 0.75em; */
   }
 </style>
