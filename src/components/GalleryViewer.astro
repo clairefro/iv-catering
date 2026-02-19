@@ -1,50 +1,34 @@
 ---
-import { Image } from "astro:assets";
-// import { getCollection } from "astro:content";
+import { getGalleryImages } from "../content/contentfulService.js";
 
-// TODO: Fetch all images from the "gallery" collection
-// const photos = await getCollection("gallery");
-
-// 1. Grab all images from the folder automatically
-// The glob pattern finds all common image formats
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/gallery/*.{jpeg,jpg,png,gif}",
-);
-
-// 2. Convert the object into an array of image imports
-const imagePaths = Object.values(images);
+const images = await getGalleryImages();
 ---
 
 <section class="gallery-section">
   <div class="gallery-grid">
     {
-      await Promise.all(
-        imagePaths.map(async (importImage, idx) => {
-          const mod = await importImage();
-          return (
-            <div class="gallery-card">
-              <div class="gallery-img-wrapper">
-                <Image
-                  src={mod.default}
-                  alt={`Gallery image ${idx + 1}`}
-                  width={800}
-                  height={600}
-                  class="gallery-img"
-                />
-                <div class="gallery-img-fullsize" tabindex="-1">
-                  <Image
-                    src={mod.default}
-                    alt={`Gallery image ${idx + 1}`}
-                    width={800}
-                    height={600}
-                    class="gallery-img-full"
-                  />
-                </div>
-              </div>
+      images.map((img: any, idx: any) => (
+        <div class="gallery-card">
+          <div class="gallery-img-wrapper" tabindex="0">
+            <img
+              src={img.image}
+              alt={img.title || `Gallery image ${idx + 1}`}
+              width={800}
+              height={600}
+              class="gallery-img"
+            />
+            <div class="gallery-img-fullsize" tabindex="-1">
+              <img
+                src={img.image}
+                alt={img.title || `Gallery image ${idx + 1}`}
+                width={800}
+                height={600}
+                class="gallery-img-full"
+              />
             </div>
-          );
-        }),
-      )
+          </div>
+        </div>
+      ))
     }
   </div>
 </section>

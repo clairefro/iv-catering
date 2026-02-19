@@ -10,7 +10,12 @@
     "prettier:clean": "prettier --write ."
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "@sanity/astro": "^3.2.11",
+    "@sanity/client": "^7.15.0",
+    "astro": "^5.17.1",
+    "contentful": "^11.10.4",
+    "sanity": "^5.10.0",
+    "styled-components": "^6.3.9"
   },
   "devDependencies": {
     "prettier": "^3.8.1",
