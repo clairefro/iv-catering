@@ -1,8 +1,6 @@
 ---
 const { pathname } = Astro.url;
 
-import { Image } from "astro:assets";
-
 const links = [
   { path: "/", text: "Home", isHome: true },
   { path: "/about", text: "About" },
@@ -23,11 +21,9 @@ const links = [
               class={pathname === link.path ? "active" : ""}
               aria-label="Home"
             >
-              <Image
-                src={"/src/assets/iovinos-logo.png"}
+              <img
+                src={"/assets/iovinos-logo.png"}
                 alt="Iovino's Catering Logo"
-                width={120}
-                height={40}
                 style="width: 120px; height: auto; vertical-align: middle; display: inline-block;"
               />
             </a>
