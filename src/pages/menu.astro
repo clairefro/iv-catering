@@ -6,20 +6,14 @@ import { getMenuRichText } from "../content/contentfulService.js";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 const menuRichText: any = await getMenuRichText();
-console.log(JSON.stringify(menuRichText, null, 2));
+const html = documentToHtmlString(menuRichText);
 ---
 
 <Layout>
   <Container>
     <section>
       <h1>Menu</h1>
-      {
-        menuRichText ? (
-          <div set:html={documentToHtmlString(menuRichText)} />
-        ) : (
-          <p>Coming soon...</p>
-        )
-      }
+      {menuRichText ? <div set:html={html} /> : <p>Coming soon...</p>}
     </section>
   </Container>
 </Layout>
