@@ -10,6 +10,7 @@
     "prettier:clean": "prettier --write ."
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^17.1.6",
     "@sanity/astro": "^3.2.11",
     "@sanity/client": "^7.15.0",
     "astro": "^5.17.1",

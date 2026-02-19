@@ -1,152 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/Container.astro";
+
+import { getMenuRichText } from "../content/contentfulService.js";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+const menuRichText: any = await getMenuRichText();
 ---
 
 <Layout>
   <Container>
     <section>
       <h1>Menu</h1>
-      <p>
-        After choosing your menu items, I will calculate the appropriate amounts
-        of each item to adequately feed your guests.
-      </p>
-
-      <h2>Dips &amp; Spreads &amp; Appetizers</h2>
-      <ul>
-        <li>Smoked Salmon &amp; Dill</li>
-        <li>Basil Pesto</li>
-        <li>Sundried Tomato</li>
-        <li>Roasted Garlic Hummus</li>
-        <li>Goat Cheese/Spinach &amp; Artichoke</li>
-      </ul>
-      <p>
-        (Dips &amp; Spreads served with pita chips and pita triangles - gluten
-        free crackers upon request)
-      </p>
-      <ul>
-        <li>Assorted Fresh Vegetable Platter for Dipping</li>
-        <li>
-          Saute of crimini mushrooms, artichoke hearts, roasted red peppers,
-          finely chopped, fresh parsley, tossed in aged balsamic glaze<br
-          />Gorgonzola crumbles - optional
-        </li>
-        <li>
-          Crimini Mushroom Caps filled with gorgonzola cream (3 per person)
-        </li>
-      </ul>
-
-      <h2>Antipasti</h2>
-      <ul>
-        <li>
-          Toscana &amp; Finnochiana Salamis, Coppa, Provolone, Mozzarella,
-          Olives, Peppers, Tomato &amp; Cucumber garnish
-        </li>
-        <li>Sliced Baguettes, brushed with garlic oil and oregano</li>
-      </ul>
-
-      <h2>Salads</h2>
-      <ul>
-        <li>
-          Organic Greens - english cucumbers - cranraisins - mandarin segments -
-          Sweet Citrus Balsamic Vinaigrette
-        </li>
-        <li>
-          Chopped romaine, saute of sweet peppers and onions, Parmesan shavings
-          - Lemon Garlic Vinaigrette<br />Add Roasted Chicken breasts, sliced
-          strips chilled
-        </li>
-        <li>
-          Insalate di Noce - chopped organic greens, roasted hazelnuts,
-          gorgonzola - White Balsamic &amp; Hazelnut Oil Vinaigrette
-        </li>
-        <li>
-          Roasted Chicken Thighs (sliced strips chilled), saute of crimini
-          mushrooms, sweet onions, grape tomatoes, fresh spinach - Aged Balsamic
-          Vinaigrette
-        </li>
-        <li>
-          Organic Red Quinoa, English cucumbers, grape tomatoes, fresh parsley -
-          White Balsamic Vinaigrette
-        </li>
-        <li>
-          Tortellini Pasta Salad - Tri-color tortellini's, cheese filled,
-          artichoke hearts, roasted red peppers, black olives, herbs, Parmesan -
-          Herb Balsamic Vinaigrette
-        </li>
-        <li>Tri-color Spiral Pasta (same ingredients)</li>
-        <li>
-          BowTie Pasta Salad - Roasted eggplant, grape tomatoes, fresh parsley,
-          Parmesan - Lemon Garlic Parsley Vinaigrette
-        </li>
-        <li>
-          Grape tomatoes and English Cucumbers tossed with a White Balsamic and
-          Virgin Olive Oil dressing and fresh parsley.
-        </li>
-      </ul>
-
-      <h2>Iovino Family Specialties</h2>
-      <ul>
-        <li>Minestroni</li>
-        <li>
-          Pasta - Mostaccioli - topped with roasted garlic plum tomato sauce,
-          served with Parmesan
-        </li>
-        <li>
-          Stuffed Pasta Shells - filled with ricotta, mozzarella, fresh spinach,
-          topped with roasted garlic plum tomato sauce.
-        </li>
-        <li>
-          Mama Iovino's Meatballs - topped with roasted garlic plum tomato
-          sauce, served with Parmesan
-        </li>
-        <li>
-          Spicy Italian Sausage - sliced links, served with a saute of green
-          peppers and sweet onions.<br />Add roasted garlic plum tomato sauce
-        </li>
-        <li>
-          Chicago Italian Beef Sandwich with saute of green peppers, onions and
-          pepperoncinis, on baguette served with AuJus.
-        </li>
-      </ul>
-
-      <h2>On-site cooking</h2>
-      <p>
-        A variety of menus offered for “hot meals” cooked on site!<br />Dinner
-        Parties in your home, cooked in your home and served.<br />A no-charge
-        consultation on menus and costs that can be prepared.
-      </p>
-
-      <h2>Desserts</h2>
-      <p>Menu provided upon request.</p>
-
-      <h2>Rental Items</h2>
-      <p>
-        All rental items for your occasion will be rented through Special
-        Occasions in Corvallis. Payment goes directly to Special Occasions.<br
-        />Iovino's provides all service servicewares for food buffets.
-      </p>
-
-      <h2>Bar Service</h2>
-      <p>
-        Iovino's does not supply bar service.<br />We work with other catering
-        companies to provide this service for you.<br />We can provide all other
-        non-alcoholic beverages.
-      </p>
-
-      <h2>Costs</h2>
-      <ul>
-        <li>Iovino's charges a 20% Labor cost on total Food Cost</li>
-        <li>
-          A 50% Deposit along with your confirmed guest count is due two weeks
-          prior to event. We accept checks, cash, no credit cards.
-        </li>
-        <li>Staff working your event - per hour (includes traveling time)</li>
-        <li>
-          No mileage charge for events within a 25 mile radius (per mile if
-          exceeds 25 miles)
-        </li>
-      </ul>
+      {menuRichText && <div set:html={documentToHtmlString(menuRichText)} />}
     </section>
   </Container>
 </Layout>

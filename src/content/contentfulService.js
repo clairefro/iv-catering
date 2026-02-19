@@ -18,3 +18,9 @@ export async function getGalleryImages() {
       : "",
   }));
 }
+
+export async function getMenuRichText() {
+  const entries = await client.getEntries({ content_type: "menu" });
+  if (!entries.items.length) return null;
+  return entries.items[0].fields.text;
+}
