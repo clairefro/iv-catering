@@ -1,10 +1,21 @@
 <footer>
-  <p>&copy; 2026 IV Catering. All rights reserved.</p>
+  <p>
+    &copy; <span id="footer-year"></span> Iovino's Catering. All rights reserved.
+  </p>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const yearSpan = document.getElementById("footer-year");
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear().toString();
+    }
+  });
+</script>
 
 <style>
   footer {
-    background: var(--accent);
+    background: var(--text);
     color: #fff;
     text-align: center;
     padding: 1rem 0;
