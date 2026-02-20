@@ -12,3 +12,6 @@ Contentful - accout = .dev
 - [ ] SEO (+og card)
 - [ ] contact form CRM
 - [ ] news / upcoming events
+
+- [ ] domain
+- [ ] workspace email
