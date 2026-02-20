@@ -11,49 +11,130 @@ const links = [
 ---
 
 <nav>
-  <ul>
-    {
-      links.map((link) => (
-        <li>
-          {link.isHome ? (
-            <a
-              href={link.path}
-              class={pathname === link.path ? "active" : ""}
-              aria-label="Home"
-            >
-              <img
-                src={"/assets/iovinos-logo.png"}
-                alt="Iovino's Catering Logo"
-                style="width: 120px; height: auto; vertical-align: middle; display: inline-block;"
-              />
-            </a>
-          ) : (
+  <div class="nav-inner">
+    <div class="nav-home">
+      <a
+        href={links[0].path}
+        class={pathname === links[0].path ? "active" : ""}
+        aria-label="Home"
+      >
+        <img
+          src={"/assets/iovinos-logo.png"}
+          alt="Iovino's Catering Logo"
+          style="width: 120px; height: auto; vertical-align: middle; display: inline-block;"
+        />
+      </a>
+    </div>
+    <button
+      class="hamburger"
+      id="nav-toggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-links">
+      {
+        links.slice(1).map((link) => (
+          <li>
             <a href={link.path} class={pathname === link.path ? "active" : ""}>
               {link.text}
             </a>
-          )}
-        </li>
-      ))
-    }
-  </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </nav>
+
+<script is:inline>
+  // Hamburger menu toggle using event delegation for SPA navigation
+  document.addEventListener("click", function (e) {
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinks = document.getElementById("nav-links");
+    if (!navToggle || !navLinks) return;
+    if (e.target === navToggle || navToggle.contains(e.target)) {
+      const expanded = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", !expanded);
+      navLinks.classList.toggle("open");
+      navToggle.classList.toggle("open");
+      e.preventDefault();
+    }
+    // Close menu when clicking a nav link (optional for SPA feel)
+    if (e.target.closest("#nav-links.open a")) {
+      navLinks.classList.remove("open");
+      navToggle.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", false);
+    }
+  });
+</script>
 
 <style>
   nav {
     background: var(--card-bg);
     padding: 1rem 2rem 1rem 2rem;
-    border-radius: 10px;
+    border-radius: 0;
     box-shadow: var(--shadow);
     font-family: var(--header-font), "Georgia", "Times New Roman", Times, serif;
     margin-bottom: 2rem;
+    position: relative;
   }
-  nav ul {
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 64px;
+  }
+  .nav-home {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.2rem;
+    padding: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 2rem;
+    height: 0.22rem;
+    margin: 0.36rem 0;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(0.85rem) rotate(50deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-0.85rem) rotate(-50deg);
+  }
+  #nav-links {
     display: flex;
     gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
     align-items: center;
+    transition: max-height 0.3s;
   }
 
   nav li {
@@ -75,5 +156,79 @@ const links = [
   nav a.active {
     text-decoration: underline;
     color: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    nav {
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 4000;
+    }
+    .nav-inner {
+      min-height: 84px;
+      height: 84px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-home {
+      margin-left: 0.5rem;
+      height: 84px;
+      display: flex;
+      align-items: center;
+    }
+    .hamburger {
+      display: flex;
+      margin-right: 0.5rem;
+      z-index: 3000;
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: var(--card-bg);
+    }
+    #nav-links {
+      flex-direction: column;
+      align-items: flex-start;
+      background: var(--card-bg) !important;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      width: 100%;
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
+      box-shadow: none;
+      border-radius: 0;
+      z-index: 2000;
+      padding: 0 0 0.5rem 0;
+      gap: 0;
+      transition:
+        max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s;
+    }
+    #nav-links,
+    nav {
+      background: var(--card-bg);
+    }
+    #nav-links.open {
+      max-height: 400px;
+      opacity: 1;
+      pointer-events: auto;
+      padding: 0.5rem 0 1rem 0;
+      box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.14);
+    }
+    #nav-links li {
+      width: 100%;
+      text-align: left;
+      margin: 0.2rem 0;
+    }
+    #nav-links a {
+      width: 100%;
+      padding: 0.75em 1.5em;
+      font-size: 1.1rem;
+    }
   }
 </style>
