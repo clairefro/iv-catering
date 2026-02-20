@@ -16,6 +16,10 @@ import Layout from "../layouts/Layout.astro";
         style="max-width: 100%"
       />
 
+      <div class="home-tagline-secondary">
+        Authentic Catering in Corvallis, Oregon
+      </div>
+
       <h1 style="display:none;">Iovino's Catering</h1>
       <p class="home-tagline">You make the call... we do it all!</p>
       <img
@@ -191,6 +195,15 @@ import Layout from "../layouts/Layout.astro";
   }
   .great-for-list li {
     margin-bottom: 0.8em;
+  }
+
+  .home-tagline-secondary {
+    text-align: center;
+    font-size: 1.13rem;
+    color: #b97a1a;
+    margin: 1.2rem 0 0.5rem 0;
+    font-family: var(--header-font, serif);
+    letter-spacing: 0.01em;
   }
 
   @media (max-width: 600px) {
