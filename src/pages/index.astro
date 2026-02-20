@@ -8,9 +8,15 @@ import Layout from "../layouts/Layout.astro";
     <img src="/assets/veggie-header.png" alt="Italian catering hero" />
   </div>
 
-  <Container>
-    <section class="home-hero">
-      <h1>Iovino's Catering</h1>
+  <section class="home-hero">
+    <Container>
+      <img
+        src="/assets/iovinos-logo.png"
+        alt="Iovino's Catering"
+        style="max-width: 100%"
+      />
+
+      <h1 style="display:none;">Iovino's Catering</h1>
       <p class="home-tagline">You make the call... we do it all!</p>
       <img
         src="/assets/regina.jpg"
@@ -18,26 +24,64 @@ import Layout from "../layouts/Layout.astro";
         class="home-regina-img"
       />
       <p class="home-intro">
-        I'm Regina Iovino, an Italian chef at heart, inspired by the rich
-        traditions, flavors, and spirit of Italy. For me, catering is about more
-        than food—it's about creating moments, laughter, and memories that
-        linger long after the last bite. Whether it's an intimate dinner, a
-        family celebration, or a grand gathering, I pour authenticity,
-        generosity, and vibrant Italian flavor into everything I create.
+        I'm <a href="/about"><strong>Regina Iovino</strong></a>, an Italian chef
+        at heart, inspired by the rich traditions, flavors, and spirit of Italy.
+        For me, catering is about more than food—it's about creating moments,
+        laughter, and memories that linger long after the last bite. Whether
+        it's an intimate dinner, a family celebration, or a grand gathering, I
+        pour authenticity, generosity, and vibrant Italian flavor into
+        everything I create.
       </p>
       <div class="home-links">
         <a href="/menu">View Menu</a>
         <a href="/gallery">See Our Gallery</a>
         <a href="/contact">Contact Us</a>
       </div>
-      <div class="home-highlight">
+    </Container>
+  </section>
+
+  <section class="highlighted">
+    <Container>
+      <div>
         <h2>What We Offer</h2>
-        <ul>
-          <li>Authentic Italian catering for any occasion</li>
-          <li>Personalized menus and warm hospitality</li>
-          <li>Beautiful presentations and memorable experiences</li>
-        </ul>
+        <p>Authentic Italian catering for any occasion</p>
+        <p>Personalized menus and warm hospitality</p>
+        <p>Beautiful presentations and memorable experiences</p>
       </div>
+    </Container>
+  </section>
+  <div class="home-hero-img">
+    <img src="/assets/platter_banner.png" alt="Iovino's Catering platter" />
+  </div>
+  <section class="services-section">
+    <Container>
+      <h2>Our Services</h2>
+      <ul class="services-list no-style">
+        <li>
+          <strong>Delivery Platters:</strong> Italian dishes delivered, ready to serve
+        </li>
+        <li>
+          <strong>On-site Chef:</strong> Regina cooks and serves at your event
+        </li>
+      </ul>
+    </Container>
+  </section>
+
+  <section class="great-for-section highlighted">
+    <Container>
+      <h2>Great For</h2>
+      <ul class="great-for-list no-style">
+        <li>Weddings & rehearsal dinners</li>
+        <li>Birthday parties & anniversaries</li>
+        <li>Family reunions & holiday gatherings</li>
+        <li>Corporate events & business luncheons</li>
+        <li>Graduations & milestone celebrations</li>
+        <li>Casual get-togethers with friends</li>
+      </ul>
+    </Container>
+  </section>
+  <section>
+    <Container>
       <div class="home-cta">
         <p>
           Ready to make your next event unforgettable? <a href="/contact"
@@ -45,126 +89,123 @@ import Layout from "../layouts/Layout.astro";
           >
         </p>
       </div>
-    </section>
-  </Container>
+    </Container>
+  </section>
+</Layout>
+<style>
+  h2 {
+    color: var(--accent);
+  }
 
-  <style>
-    .home-hero {
-      text-align: center;
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-    .home-tagline {
-      font-size: 1.3rem;
-      color: var(--accent, #eab308);
-      margin-bottom: 1.5rem;
-      font-family: var(--header-font);
-    }
-    .home-regina-img {
-      display: block;
-      margin: 0 auto 2rem auto;
-      width: 180px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    }
-    .home-intro {
-      font-size: 1.13rem;
-      max-width: 600px;
-      margin: 0 auto 2rem auto;
-      color: #333;
-    }
+  section {
+    margin: 1rem 0;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  section.highlighted {
+    background-color: var(--bg-highlight);
+  }
+
+  .home-tagline {
+    font-size: 1.3rem;
+    color: var(--accent, #eab308);
+    margin-bottom: 1.5rem;
+    font-family: var(--header-font);
+  }
+  .home-regina-img {
+    display: block;
+    margin: 0 auto 2rem auto;
+    width: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  }
+  .home-intro {
+    font-size: 1.13rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: #333;
+  }
+  .home-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    font-family: var(--header-font);
+  }
+  .home-links a {
+    background: var(--accent, #eab308);
+    color: #fff;
+    padding: 0.7em 1.5em;
+    text-decoration: none;
+    font-size: 1.08rem;
+    transition: background 0.2s;
+  }
+  .home-links a:hover {
+    background: #b97a1a;
+    font-family: var(--header-font);
+  }
+
+  .home-cta {
+    margin-top: 2.5rem;
+    font-size: 1.15rem;
+    color: #222;
+  }
+  .home-cta a {
+    color: var(--accent, #eab308);
+    text-decoration: underline;
+    font-family: var(--header-font);
+  }
+
+  .home-hero-img {
+    padding: 0 !important;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: 100vw;
+    overflow: hidden;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  }
+  .home-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* object-position: center 30%; */
+    display: block;
+  }
+
+  .great-for-list {
+    list-style-type: none;
+    text-align: center; /* centers the text */
+    margin: 0 auto;
+    max-width: 600px; /* optional: for a nice width */
+    padding: 0;
+  }
+  .great-for-list li {
+    margin-bottom: 0.8em;
+  }
+
+  @media (max-width: 600px) {
     .home-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-      font-family: var(--header-font);
-    }
-    .home-links a {
-      background: var(--accent, #eab308);
-      color: #fff;
-      padding: 0.7em 1.5em;
-      text-decoration: none;
-      font-size: 1.08rem;
-      transition: background 0.2s;
-    }
-    .home-links a:hover {
-      background: #b97a1a;
-      font-family: var(--header-font);
+      flex-direction: column;
+      gap: 1.2rem;
     }
     .home-highlight {
-      margin: 2.5rem auto 2rem auto;
-      max-width: 500px;
-      background: #faf7f2;
-      border-radius: 1.2em;
-      padding: 1.5rem 1.2rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      padding: 1.1rem 0.5rem;
     }
-    .home-highlight h2 {
-      margin-top: 0;
-      color: var(--accent, #eab308);
-      font-size: 1.25rem;
-      font-family: var(--header-font);
+    .home-regina-img {
+      width: 140px;
     }
-    .home-highlight ul {
-      list-style: disc inside;
-      margin: 1rem 0 0 0;
-      padding: 0;
-      color: #444;
-      font-size: 1.08rem;
-      text-align: left;
-    }
-    .home-cta {
-      margin-top: 2.5rem;
-      font-size: 1.15rem;
-      color: #222;
-    }
-    .home-cta a {
-      color: var(--accent, #eab308);
-      text-decoration: underline;
-      font-weight: 600;
-    }
-
     .home-hero-img {
-      padding: 0 !important;
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      max-width: 100vw;
-      overflow: hidden;
-      height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+      height: 160px;
     }
-    .home-hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* object-position: center 30%; */
-      display: block;
-    }
-
-    @media (max-width: 600px) {
-      .home-links {
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-      .home-highlight {
-        padding: 1.1rem 0.5rem;
-      }
-      .home-regina-img {
-        width: 140px;
-      }
-      .home-hero-img {
-        height: 160px;
-      }
-    }
-  </style>
-</Layout>
+  }
+</style>

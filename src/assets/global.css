@@ -87,6 +87,7 @@
 
 :root {
   --bg: #f5f3ee; /* slightly warm off-white */
+  --bg-highlight: #faf7f2;
   --card-bg: #fff;
   --text: #181715; /* off-black */
   --heading: #181715;
@@ -111,6 +112,12 @@ body {
   font-weight: 300;
   font-size: 18px;
   line-height: 1.7;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -152,7 +159,12 @@ ol {
 }
 
 ul {
-  list-style-type: "\273E   ";
+  list-style-type: "\273E";
+  /* list-style-position: inside; */
+}
+
+ul.no-style {
+  list-style-type: none !important;
 }
 
 li {
