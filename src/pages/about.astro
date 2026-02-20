@@ -6,19 +6,47 @@ import Container from "../components/Container.astro";
 <Layout>
   <Container>
     <section>
-      <h1>About Us</h1>
+      <h1>Welcome!</h1>
+      <img
+        src="/assets/regina.jpg"
+        alt="Regina Iovino"
+        class="about-regina-img"
+      />
+      <p>I'm Regina Iovino, and this is my kitchen.</p>
       <p>
-        Iovino's Catering offers full-service catering with individual menus
-        designed to fit your individual needs for your special occasion. We
-        offer platter menu options for delivery or beautiful full-service
-        catering buffet.
+        I'm an Italian chef at heart, inspired by the rich traditions, flavors,
+        and spirit of Italy. I learned that food is more than something on a
+        plate. It's how we show love, how we celebrate, and how we bring people
+        together. I cook the way I speak: with my hands, with passion, and with
+        my whole heart. If you see me gesturing over a simmering pot, that's
+        just part of the experience.
       </p>
 
       <p>
-        Menus are designed to fit your budget and special requests during your
-        event. We look forward to assisting you in creating a memorable occasion
-        for you and your guests.
+        For me, catering isn't about trays of food, it's about creating moments.
+        I want you and your guests to feel welcomed, cared for, and completely
+        satisfied. I want laughter around the table, seconds (and thirds), and
+        memories that linger long after the last bite. Feeding people brings me
+        pure joy. And yes, my contagious laugh usually makes an appearance at
+        every event.
       </p>
+      <p>
+        Whether it's an intimate dinner, a family celebration, or a grand
+        gathering, I pour authenticity, generosity, and vibrant Italian flavor
+        into everything I create.
+      </p>
+      <p>Come hungry - I'll take care of the rest.</p>
     </section>
   </Container>
+  <style>
+    .about-regina-img {
+      display: block;
+      margin: 0 auto 2rem auto;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </Layout>
