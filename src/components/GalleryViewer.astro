@@ -17,7 +17,13 @@ const images = await getGalleryImages();
               height={600}
               class="gallery-img"
             />
-            <div class="gallery-img-fullsize" tabindex="-1">
+            <div class="gallery-img-fullsize" tabindex="-1" data-index={idx}>
+              <button
+                class="gallery-arrow gallery-arrow-left"
+                aria-label="Previous image"
+              >
+                &#x2039;
+              </button>
               <img
                 src={img.image}
                 alt={img.title || `Gallery image ${idx + 1}`}
@@ -25,6 +31,12 @@ const images = await getGalleryImages();
                 height={600}
                 class="gallery-img-full"
               />
+              <button
+                class="gallery-arrow gallery-arrow-right"
+                aria-label="Next image"
+              >
+                &#x203A;
+              </button>
             </div>
           </div>
         </div>
@@ -148,22 +160,87 @@ const images = await getGalleryImages();
     transform: scale(1);
     opacity: 1;
   }
+
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2100;
+    opacity: 0.85;
+    transition:
+      background 0.2s,
+      opacity 0.2s;
+    padding: 0;
+  }
+  .gallery-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+  }
+  .gallery-arrow-left {
+    left: 2vw;
+    right: auto;
+  }
+  .gallery-arrow-right {
+    right: 2vw;
+    left: auto;
+  }
 </style>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".gallery-img-wrapper").forEach((wrapper) => {
-      const thumb = wrapper.querySelector(".gallery-img");
-      const overlay = wrapper.querySelector(".gallery-img-fullsize");
-      if (!thumb || !overlay) return;
-      // Show overlay on click
-      thumb.addEventListener("click", () => {
+<script is:inline>
+  // Use event delegation for robust handling after hot reloads and dynamic content
+  document.addEventListener("click", (e) => {
+    // Open fullsize on thumbnail click
+    const thumb = e.target.closest(".gallery-img");
+    if (thumb) {
+      const wrapper = thumb.closest(".gallery-img-wrapper");
+      const overlay = wrapper && wrapper.querySelector(".gallery-img-fullsize");
+      if (overlay) {
         overlay.classList.add("active");
-      });
-      // Hide overlay on click
-      overlay.addEventListener("click", () => {
-        overlay.classList.remove("active");
-      });
-    });
+        e.preventDefault();
+        return;
+      }
+    }
+    // Close fullsize on overlay click (but not when clicking arrows or image)
+    const overlay = e.target.closest(".gallery-img-fullsize.active");
+    if (
+      overlay &&
+      !e.target.classList.contains("gallery-arrow") &&
+      !e.target.classList.contains("gallery-img-full")
+    ) {
+      overlay.classList.remove("active");
+      e.preventDefault();
+      return;
+    }
+    // Navigation arrows
+    if (e.target.classList.contains("gallery-arrow")) {
+      const isLeft = e.target.classList.contains("gallery-arrow-left");
+      const isRight = e.target.classList.contains("gallery-arrow-right");
+      const overlay = e.target.closest(".gallery-img-fullsize");
+      if (!overlay) return;
+      const allOverlays = Array.from(
+        document.querySelectorAll(".gallery-img-fullsize"),
+      );
+      const currentIdx = Number(overlay.getAttribute("data-index"));
+      let nextIdx = currentIdx;
+      if (isLeft)
+        nextIdx = (currentIdx - 1 + allOverlays.length) % allOverlays.length;
+      if (isRight) nextIdx = (currentIdx + 1) % allOverlays.length;
+      overlay.classList.remove("active");
+      const nextOverlay = allOverlays[nextIdx];
+      if (nextOverlay) nextOverlay.classList.add("active");
+      e.preventDefault();
+      return;
+    }
   });
 </script>
