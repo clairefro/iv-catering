@@ -159,8 +159,7 @@ ol {
 }
 
 ul {
-  list-style-type: "\273E";
-  /* list-style-position: inside; */
+  list-style-type: "\273E   ";
 }
 
 ul.no-style {
