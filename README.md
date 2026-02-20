@@ -6,3 +6,9 @@
 ## CMS
 
 Contentful - accout = .dev
+
+## TODO
+
+- [ ] SEO (+og card)
+- [ ] contact form CRM
+- [ ] news / upcoming events
