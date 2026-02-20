@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+---
+
+<Layout>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+  <Container>
+    <div style="text-align:center">
+      <h2>
+        4
+        <span class="admin-secret-zero" style="cursor:pointer" tabindex="0"
+          >0</span
+        >
+        4
+      </h2>
+      <p>Page not found</p>
+    </div>
+  </Container>
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+      const secretZero = document.querySelector(".admin-secret-zero");
+      const secretUrl =
+        "https://app.contentful.com/spaces/dzohsh5fpsgf/views/entries";
+      if (secretZero) {
+        secretZero.addEventListener("click", function (e) {
+          window.open(secretUrl, "_blank", "noopener,noreferrer");
+        });
+        secretZero.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            window.open(secretUrl, "_blank", "noopener,noreferrer");
+          }
+        });
+      }
+    });
+  </script>
+</Layout>
