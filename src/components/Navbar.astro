@@ -53,15 +53,28 @@ const links = [
     const navToggle = document.getElementById("nav-toggle");
     const navLinks = document.getElementById("nav-links");
     if (!navToggle || !navLinks) return;
+    // Toggle menu on hamburger click
     if (e.target === navToggle || navToggle.contains(e.target)) {
       const expanded = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", !expanded);
       navLinks.classList.toggle("open");
       navToggle.classList.toggle("open");
       e.preventDefault();
+      return;
     }
-    // Close menu when clicking a nav link (optional for SPA feel)
+    // Close menu when clicking a nav link
     if (e.target.closest("#nav-links.open a")) {
+      navLinks.classList.remove("open");
+      navToggle.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", false);
+      return;
+    }
+    // Close menu when clicking outside nav-links and hamburger
+    if (
+      navLinks.classList.contains("open") &&
+      !navLinks.contains(e.target) &&
+      !navToggle.contains(e.target)
+    ) {
       navLinks.classList.remove("open");
       navToggle.classList.remove("open");
       navToggle.setAttribute("aria-expanded", false);
