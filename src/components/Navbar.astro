@@ -80,6 +80,24 @@ const links = [
       navToggle.setAttribute("aria-expanded", false);
     }
   });
+
+  // Client-side active link highlighting
+  function updateActiveNav() {
+    const links = document.querySelectorAll("nav a[href]");
+    const current = window.location.pathname.replace(/\/$/, "");
+    links.forEach((link) => {
+      let linkPath = link.getAttribute("href").replace(/\/$/, "");
+      if (linkPath === "") linkPath = "/";
+      if (current === linkPath) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+  window.addEventListener("DOMContentLoaded", updateActiveNav);
+  window.addEventListener("astro:after-swap", updateActiveNav); // for Astro View Transitions
+  window.addEventListener("popstate", updateActiveNav); // for browser nav
 </script>
 
 <style>
