@@ -9,15 +9,13 @@ import Layout from "../layouts/Layout.astro";
   </div>
 
   <section class="home-hero">
-    <div class="logo-bg">
+    <Container>
       <img
         src="/assets/iovinos-logo.png"
         alt="Iovino's Catering"
         style="max-width:100%"
         class="logo-banner"
       />
-    </div>
-    <Container>
       <div class="home-tagline-secondary">
         Authentic Catering in Corvallis, Oregon
       </div>
@@ -40,8 +38,8 @@ import Layout from "../layouts/Layout.astro";
       </p>
       <div class="home-links">
         <a href="/menu">View Menu</a>
-        <a href="/gallery">See Our Gallery</a>
-        <a href="/contact">Contact Us</a>
+        <a href="/gallery">See Gallery</a>
+        <a href="/contact">Contact</a>
       </div>
     </Container>
   </section>
@@ -60,17 +58,16 @@ import Layout from "../layouts/Layout.astro";
     <img src="/assets/platter_banner.png" alt="Iovino's Catering platter" />
   </div>
   <section class="services-section">
-    <Container>
-      <h2>Our Services</h2>
-      <ul class="services-list no-style">
-        <li>
-          <strong>Delivery Platters:</strong> Italian dishes delivered, ready to serve
-        </li>
-        <li>
-          <strong>On-site Chef:</strong> Regina cooks and serves at your event
-        </li>
-      </ul>
-    </Container>
+    <div class="services-split">
+      <div class="service-card">
+        <h2>Delivery Platters</h2>
+        <p>Italian dishes delivered, ready to serve</p>
+      </div>
+      <div class="service-card">
+        <h2>On-site Chef</h2>
+        <p>Regina cooks and serves at your event</p>
+      </div>
+    </div>
   </section>
 
   <section class="great-for-section highlighted">
@@ -112,15 +109,6 @@ import Layout from "../layouts/Layout.astro";
     background-color: var(--bg-highlight);
   }
 
-  .logo-bg {
-    padding: 0.35rem;
-    background-color: var(--text);
-    max-width: 500px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-  }
-
   .home-tagline {
     font-size: 1.3rem;
     color: var(--accent, #eab308);
@@ -150,7 +138,7 @@ import Layout from "../layouts/Layout.astro";
     font-family: var(--header-font);
   }
   .home-links a {
-    background: var(--accent, #eab308);
+    background-color: var(--text);
     color: #fff;
     padding: 0.7em 1.5em;
     text-decoration: none;
@@ -217,6 +205,43 @@ import Layout from "../layouts/Layout.astro";
     letter-spacing: 0.01em;
   }
 
+  .services-split {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+  .service-card {
+    flex: 1 1 260px;
+    background: var(--bg-highlight, #f8f8f8);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    padding: 2rem 1.5rem;
+    margin: 0 0.5rem;
+    min-width: 220px;
+    max-width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .service-card h2 {
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+  }
+  @media (max-width: 800px) {
+    .services-split {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .service-card {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+
   @media (max-width: 600px) {
     .home-links {
       flex-direction: column;
@@ -231,10 +256,7 @@ import Layout from "../layouts/Layout.astro";
     .home-hero-img {
       height: 160px;
     }
-    .logo-banner {
-      max-width: 100%;
-      /* padding: 0 0.25rem; */
-    }
+
     section {
       margin-top: 0;
     }
