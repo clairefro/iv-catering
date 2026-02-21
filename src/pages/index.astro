@@ -13,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
       <img
         src="/assets/iovinos-logo.png"
         alt="Iovino's Catering"
-        style="max-height: 150px;"
+        style="max-width:100%"
         class="logo-banner"
       />
     </div>
@@ -113,9 +113,10 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .logo-bg {
-    padding: 0.35rem 0;
+    padding: 0.35rem;
     background-color: var(--text);
-    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
   }
@@ -233,6 +234,9 @@ import Layout from "../layouts/Layout.astro";
     .logo-banner {
       max-width: 100%;
       /* padding: 0 0.25rem; */
+    }
+    section {
+      margin-top: 0;
     }
   }
 </style>
