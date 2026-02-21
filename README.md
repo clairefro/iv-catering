@@ -9,7 +9,9 @@ Contentful - accout = .dev
 
 ## TODO
 
+- [ ] launch hosted site
 - [ ] SEO (+og card)
+- [ ] remove search engine index blocking (Layout header, robots.txt)
 - [ ] contact form CRM
 - [ ] news / upcoming events
 

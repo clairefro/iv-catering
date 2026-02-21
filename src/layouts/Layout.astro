@@ -9,11 +9,13 @@ import { ClientRouter } from "astro:transitions";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    {/* TODO: Remove at launch - prevents search engine indexing for now */}
+    <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Iovino's Catering | Authentic Catering in Corvallis</title>
+    <title>Iovino's Catering | Authentic Catering in Corvallis, Oregon</title>
     <ClientRouter />
   </head>
   <body>
