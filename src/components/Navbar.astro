@@ -95,9 +95,10 @@ const links = [
       }
     });
   }
-  window.addEventListener("DOMContentLoaded", updateActiveNav);
-  window.addEventListener("astro:after-swap", updateActiveNav); // for Astro View Transitions
-  window.addEventListener("popstate", updateActiveNav); // for browser nav
+  // astro:page-load fires on every navigation (including initial) when using ClientRouter
+  document.addEventListener("astro:page-load", updateActiveNav);
+  // Also run immediately in case the event already fired
+  updateActiveNav();
 </script>
 
 <style>
