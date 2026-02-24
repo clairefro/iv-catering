@@ -50,8 +50,6 @@ const images = await getGalleryImages();
     max-width: 72rem;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
@@ -63,7 +61,7 @@ const images = await getGalleryImages();
   .gallery-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
   @media (min-width: 640px) {
     .gallery-grid {
@@ -86,8 +84,9 @@ const images = await getGalleryImages();
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
   }
   .gallery-img {
-    height: 16rem;
     width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
     object-fit: cover;
     transition: transform 0.5s;
     display: block;
@@ -139,22 +138,11 @@ const images = await getGalleryImages();
     pointer-events: auto;
   }
   .gallery-img-full {
-    width: auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     height: auto;
-    max-width: 90vw;
-    max-height: 90vh;
-    aspect-ratio: 4/3;
-    border-radius: 12px;
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+    object-fit: cover;
     display: block;
-    margin: auto;
-    object-fit: contain;
-    background: #222;
-    transform: scale(0.95);
-    opacity: 0.7;
-    transition:
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .gallery-img-fullsize.active .gallery-img-full {
     transform: scale(1);
