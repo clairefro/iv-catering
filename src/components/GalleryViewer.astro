@@ -30,6 +30,7 @@ const images = await getGalleryImages();
                 width={800}
                 height={600}
                 class="gallery-img-full"
+                max-height="90vh"
               />
               <button
                 class="gallery-arrow gallery-arrow-right"
@@ -139,9 +140,11 @@ const images = await getGalleryImages();
   }
   .gallery-img-full {
     width: 100%;
+    max-width: 90vw;
+    max-height: 90vh;
     aspect-ratio: 1 / 1;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
   }
   .gallery-img-fullsize.active .gallery-img-full {
