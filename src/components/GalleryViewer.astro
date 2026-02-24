@@ -22,7 +22,7 @@ const images = await getGalleryImages();
                 class="gallery-arrow gallery-arrow-left"
                 aria-label="Previous image"
               >
-                &#x2039;
+                <span>&#x2039;</span>
               </button>
               <img
                 src={img.image}
@@ -36,7 +36,7 @@ const images = await getGalleryImages();
                 class="gallery-arrow gallery-arrow-right"
                 aria-label="Next image"
               >
-                &#x203A;
+                <span>&#x203A;</span>
               </button>
             </div>
           </div>
@@ -165,7 +165,6 @@ const images = await getGalleryImages();
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
     border-radius: 50%;
     cursor: pointer;
     z-index: 2100;
@@ -175,6 +174,14 @@ const images = await getGalleryImages();
       opacity 0.2s;
     padding: 0;
   }
+
+  .gallery-arrow-right span {
+    transform: translate(2px, -1px);
+  }
+  .gallery-arrow-left span {
+    transform: translate(-1px, -1px);
+  }
+
   .gallery-arrow:hover {
     background: rgba(0, 0, 0, 0.8);
     opacity: 1;
@@ -207,7 +214,7 @@ const images = await getGalleryImages();
     const overlay = e.target.closest(".gallery-img-fullsize.active");
     if (
       overlay &&
-      !e.target.classList.contains("gallery-arrow") &&
+      !e.target.closest(".gallery-arrow") &&
       !e.target.classList.contains("gallery-img-full")
     ) {
       overlay.classList.remove("active");
@@ -215,10 +222,11 @@ const images = await getGalleryImages();
       return;
     }
     // Navigation arrows
-    if (e.target.classList.contains("gallery-arrow")) {
-      const isLeft = e.target.classList.contains("gallery-arrow-left");
-      const isRight = e.target.classList.contains("gallery-arrow-right");
-      const overlay = e.target.closest(".gallery-img-fullsize");
+    const arrowBtn = e.target.closest(".gallery-arrow");
+    if (arrowBtn) {
+      const isLeft = arrowBtn.classList.contains("gallery-arrow-left");
+      const isRight = arrowBtn.classList.contains("gallery-arrow-right");
+      const overlay = arrowBtn.closest(".gallery-img-fullsize");
       if (!overlay) return;
       const allOverlays = Array.from(
         document.querySelectorAll(".gallery-img-fullsize"),
