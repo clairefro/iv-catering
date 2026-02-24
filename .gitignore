@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 .contentful-cache.json
+# Local Netlify folder
+.netlify
