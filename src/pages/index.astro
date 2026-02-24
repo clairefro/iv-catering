@@ -3,10 +3,14 @@ import Container from "../components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
+<head>
+  <link rel="preload" as="image" href="/assets/veggie-header.wepb" />
+</head>
+
 <Layout>
   <div class="home-hero-img">
     <img
-      src="/assets/veggie-header.png"
+      src="/assets/veggie-header.webp"
       class="fade"
       alt="Italian catering hero"
       onload="this.style.opacity=1"
@@ -176,7 +180,7 @@ import Layout from "../layouts/Layout.astro";
     padding: 0 !important;
     width: 100vw;
     position: relative;
-    background-color: transparent;
+    background-color: var(--accent);
     left: 50%;
     right: 50%;
     margin-left: -50vw;
