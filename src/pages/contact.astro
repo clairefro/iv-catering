@@ -29,7 +29,7 @@ import Layout from "../layouts/Layout.astro";
         Message*
         <textarea name="message" required rows="6"></textarea>
       </label>
-      <button type="submit">Send</button>
+      <button type="submit" id="contactSubmitBtn">Send</button>
     </form>
     <div id="formStatus"></div>
   </Container>
@@ -42,18 +42,17 @@ import Layout from "../layouts/Layout.astro";
     .addEventListener("submit", async function (e) {
       e.preventDefault();
       const form = e.target;
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        phone: form.phone.value,
-        message: form.message.value,
-      };
+      const submitBtn = document.getElementById("contactSubmitBtn");
       const status = document.getElementById("formStatus");
-      if (!status) return;
+      if (!status || !submitBtn) return;
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+      submitBtn.style.cursor = "not-allowed";
       try {
         const formData = new FormData(form);
         const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbzSMZvA9grIYr2QjatBD2TR9LeEA8j8P9Y5zlOiDFdJnu2owlrGoMu6vPY_RLDAdupQ/exec",
+          "https://script.google.com/macros/s/AKfycbxYgmEw1xfVmIGThUi8tpSdauFfZoCN6FqmBA4RoIT7rSVvj2RUg04NCdq5IvNkEkGTtQ/exec",
           {
             method: "POST",
             body: formData,
@@ -68,6 +67,10 @@ import Layout from "../layouts/Layout.astro";
         }
       } catch (err) {
         status.textContent = "Error sending message. Please try again.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        submitBtn.style.cursor = "pointer";
       }
     });
 </script>
