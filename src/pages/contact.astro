@@ -29,6 +29,10 @@ import Layout from "../layouts/Layout.astro";
         Message*
         <textarea name="message" required rows="6"></textarea>
       </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="notRobot" required />
+        I'm a human
+      </label>
       <button type="submit" id="contactSubmitBtn">Send</button>
     </form>
     <div id="formStatus"></div>
@@ -47,7 +51,14 @@ import Layout from "../layouts/Layout.astro";
           "contactSubmitBtn",
         ) as HTMLButtonElement;
         const status = document.getElementById("formStatus");
+        const notRobot = document.getElementById(
+          "notRobot",
+        ) as HTMLInputElement;
         if (!status || !submitBtn || !form) return;
+        if (!notRobot?.checked) {
+          status.textContent = "Please confirm you're not a robot.";
+          return;
+        }
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = "Submitting...";
@@ -106,6 +117,19 @@ import Layout from "../layouts/Layout.astro";
     background: #fafafa;
     color: #222;
     resize: vertical;
+  }
+  #contactForm .checkbox-label {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  #contactForm .checkbox-label input[type="checkbox"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    padding: 0;
+    cursor: pointer;
   }
   #contactForm button {
     background: var(--accent, #eab308);

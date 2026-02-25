@@ -7,6 +7,13 @@
 
 Contentful - accout = .dev
 
+- Fetches assets on build (gallery images, menu)
+- Webhook auto-redeploys hosted site with content updates
+
+## Hosting
+
+Netlify (GH)
+
 ## TODO
 
 - [ ] launch hosted site

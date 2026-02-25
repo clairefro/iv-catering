@@ -28,7 +28,10 @@ export async function getGalleryImages() {
     image: item.fields.image?.fields?.file?.url
       ? `https:${item.fields.image.fields.file.url}`
       : "",
+    updatedAt: item.sys.updatedAt,
   }));
+  // Sort by updatedAt descending
+  images.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
   if (isDev) setGalleryCache(images);
   return images;
 }
