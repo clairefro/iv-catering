@@ -147,7 +147,7 @@ import Layout from "../layouts/Layout.astro";
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(32, 32, 32, 0.7); /* adjust opacity as needed */
+    background: rgba(32, 32, 32, 0.6); /* adjust opacity as needed */
     z-index: 0;
   }
   .great-for-overlay {
@@ -243,6 +243,7 @@ import Layout from "../layouts/Layout.astro";
     align-items: center;
     justify-content: center;
     background: var(--accent);
+    top: -20px;
   }
   .hero-bg-img {
     position: absolute;
@@ -255,7 +256,9 @@ import Layout from "../layouts/Layout.astro";
     display: block;
     pointer-events: none;
   }
-
+  section.home-hero {
+    padding-top: 0rem !important;
+  }
   .platter-banner {
     width: 100%;
   }
@@ -343,8 +346,11 @@ import Layout from "../layouts/Layout.astro";
     .home-hero-img {
       height: 260px;
     }
-    .home-hero-img.hero-bg-img {
-      height: 100%;
+    .home-hero-img .hero-bg-img {
+      height: 300px;
+      width: 600px;
+      object-fit: cover;
+      object-position: 50% 0;
     }
     .home-hero-img img {
       max-width: 100%;
