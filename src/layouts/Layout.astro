@@ -11,13 +11,49 @@ import { ClientRouter } from "astro:transitions";
     <meta charset="UTF-8" />
     {/* TODO: Remove at launch - prevents search engine indexing for now */}
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Iovino's Catering | Authentic Catering in Corvallis, Oregon</title>
+    <title>
+      Iovino's Catering | Authentic Italian Catering in Corvallis, Oregon
+    </title>
+    <meta
+      name="description"
+      content="Authentic Italian catering in Corvallis, Oregon. Weddings, events, parties, and more. Contact Iovino's Catering for delicious, memorable food and service."
+    />
+    {/* TODO: Update URL when domain is purchased */}
+    <link
+      rel="canonical"
+      href="https://https://iovinos-catering.netlify.app/"
+    />
+    {/* OpenGraph Facebook */}
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Iovino's Catering | Authentic Italian Catering in Corvallis, Oregon"
+    />
+    <meta
+      property="og:description"
+      content="Authentic Italian catering in Corvallis, Oregon. Weddings, events, parties, and more. Contact Iovino's Catering for delicious, memorable food and service."
+    />
+    <meta property="og:url" content="https://iovinoscatering.com/" />
+    <meta property="og:image" content="/assets/iovinos-og.png" />
+    {/* OpenGraph: Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Iovino's Catering | Authentic Italian Catering in Corvallis, Oregon"
+    />
+    <meta
+      name="twitter:description"
+      content="Authentic Italian catering in Corvallis, Oregon. Weddings, events, parties, and more. Contact Iovino's Catering for delicious, memorable food and service."
+    />
+    <meta name="twitter:image" content="/assets/iovinos-og.png" />
     <ClientRouter />
+    <slot name="head" />
   </head>
+
   <body>
     <Navbar />
     <main class="main-content" astro-view-transition>
