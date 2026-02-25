@@ -31,6 +31,26 @@ import { ClientRouter } from "astro:transitions";
       rel="canonical"
       href="https://https://iovinos-catering.netlify.app/"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FoodEstablishment",
+        "name": "Iovino's Catering",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Your Street Address",
+          "addressLocality": "Corvallis",
+          "addressRegion": "OR",
+          "postalCode": "97330",
+          "addressCountry": "US"
+        },
+        "telephone": "+1-541-908-9544",
+        "url": "https://iovinos-catering.netlify.app/",
+        "servesCuisine": "Italian",
+        "areaServed": "Corvallis, OR"
+      }
+    </script>
     {/* OpenGraph Facebook */}
     <meta property="og:type" content="website" />
     <meta
