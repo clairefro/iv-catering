@@ -31,6 +31,7 @@ const images = await getGalleryImages();
                 height={600}
                 class="gallery-img-full"
                 max-height="90vh"
+                style="background-color: rgba(0,0,0,0.4)"
               />
               <button
                 class="gallery-arrow gallery-arrow-right"
@@ -241,6 +242,35 @@ const images = await getGalleryImages();
       if (nextOverlay) nextOverlay.classList.add("active");
       e.preventDefault();
       return;
+    }
+  });
+  // Keyboard navigation for fullsize overlay
+  document.addEventListener("keydown", (e) => {
+    const activeOverlay = document.querySelector(
+      ".gallery-img-fullsize.active",
+    );
+    if (!activeOverlay) return;
+    const allOverlays = Array.from(
+      document.querySelectorAll(".gallery-img-fullsize"),
+    );
+    const currentIdx = Number(activeOverlay.getAttribute("data-index"));
+    let nextIdx = currentIdx;
+    if (e.key === "ArrowLeft") {
+      nextIdx = (currentIdx - 1 + allOverlays.length) % allOverlays.length;
+    } else if (e.key === "ArrowRight") {
+      nextIdx = (currentIdx + 1) % allOverlays.length;
+    } else if (e.key === "Escape") {
+      activeOverlay.classList.remove("active");
+      e.preventDefault();
+      return;
+    } else {
+      return;
+    }
+    if (nextIdx !== currentIdx) {
+      activeOverlay.classList.remove("active");
+      const nextOverlay = allOverlays[nextIdx];
+      if (nextOverlay) nextOverlay.classList.add("active");
+      e.preventDefault();
     }
   });
 </script>
