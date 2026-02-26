@@ -57,6 +57,7 @@ import Layout from "../layouts/Layout.astro";
         if (!status || !submitBtn || !form) return;
         if (!notRobot?.checked) {
           status.textContent = "Please confirm you're not a robot.";
+          status.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
         const originalText = submitBtn.textContent;
@@ -76,11 +77,14 @@ import Layout from "../layouts/Layout.astro";
           if (response.ok) {
             status.textContent = "Thank you! Your message was sent.";
             form.reset();
+            status.scrollIntoView({ behavior: "smooth", block: "center" });
           } else {
             status.textContent = "Error sending message. Please try again.";
+            status.scrollIntoView({ behavior: "smooth", block: "center" });
           }
         } catch (err) {
           status.textContent = "Error sending message. Please try again.";
+          status.scrollIntoView({ behavior: "smooth", block: "center" });
         } finally {
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
