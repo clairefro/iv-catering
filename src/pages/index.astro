@@ -8,44 +8,55 @@ import Layout from "../layouts/Layout.astro";
 </Fragment>
 
 <Layout>
-  <div class="home-hero-img hero-with-logo">
-    <img
-      src="/assets/veggie-header.webp"
-      class="fade hero-bg-img"
-      alt="Italian catering hero"
-      onload="this.style.opacity=1"
-    />
-    <img
-      src="/assets/iovinos-logo.png"
-      alt="Iovino's Catering"
-      class="logo-banner hero-logo-centered"
-    />
-  </div>
+  <h1 style="display:none;">Iovino's Catering</h1>
 
   <section class="home-hero">
     <Container>
-      <div class="home-tagline-secondary">Authentic Italian Catering</div>
+      <img
+        src="/assets/iovinos-logo.png"
+        alt="Iovino's Catering"
+        class="logo-banner"
+        style="margin-bottom:2rem;"
+      />
+
+      <img src="/assets/hero1.webp" alt="Iovino's Catering" />
+
       <div class="home-tagline-secondary">
-        Serving Corvallis, OR and surrounding areas
+        Authentic Italian in Corvallis, Oregon
       </div>
 
-      <h1 style="display:none;">Iovino's Catering</h1>
-      <p class="home-tagline">You make the call... we do it all!</p>
-      <img
-        src="/assets/regina.jpg"
-        alt="Regina Iovino"
-        class="home-regina-img"
-      />
-      <p class="home-intro">
-        I'm <a href="/about"><strong>Regina Iovino</strong></a>, former owner
-        and chef of Iovino's Restaurant in Corvallis. An Italian chef at heart,
-        I'm inspired by the rich traditions, flavors, and spirit of Italy. For
-        me, catering is about more than food — it's about creating moments,
-        laughter, and memories that linger long after the last bite. Whether
-        it's an intimate dinner, a family celebration, or a grand gathering, I
-        pour authenticity, generosity, and vibrant Italian flavor into
-        everything I create.
-      </p>
+      <div>
+        <h2>Welcome!</h2>
+        <p>
+          I'm <strong>Regina Iovino</strong>, former chef and and owner of <strong
+            >Iovino's Ristorante</strong
+          > and
+          <strong>Iovino's Cucina</strong> in Corvallis. An Italian chef at heart,
+          I'm inspired by the rich traditions, flavors, and spirit of Italy.
+        </p>
+        <p>
+          For me, catering isn't about trays of food, it's about creating
+          moments. I want you and your guests to feel welcomed, cared for, and
+          completely satisfied. I want laughter around the table, seconds (and
+          thirds), and memories that linger long after the last bite. Feeding
+          people brings me pure joy. And yes, my contagious laugh usually makes
+          an appearance at every event.
+        </p>
+        <p>
+          Whether it's an intimate dinner, a family celebration, or a grand
+          gathering, I pour authenticity, generosity, and vibrant Italian flavor
+          into everything I create.
+        </p>
+        <p>
+          Come hungry - I'll take care of the rest. I look forward to cooking
+          for your family and friends on your special occasion!
+        </p>
+        <img
+          src="/assets/regina.jpg"
+          alt="Regina Iovino"
+          class="home-regina-img"
+        />
+      </div>
       <div class="home-links">
         <a href="/menu">View Menu</a>
         <a href="/gallery">See Gallery</a>
@@ -54,37 +65,89 @@ import Layout from "../layouts/Layout.astro";
     </Container>
   </section>
 
-  <section class="highlighted">
-    <Container>
-      <div>
-        <h2>What We Offer</h2>
-        <p>Authentic Italian catering for any occasion</p>
-        <p>Personalized menus and warm hospitality</p>
-        <p>Beautiful presentations and memorable experiences</p>
-      </div>
-    </Container>
-  </section>
   <div class="platter-banner">
     <img
-      src="/assets/platter_banner_up.webp"
+      src="/assets/platter-wide.webp"
       alt="Iovino's Catering platter"
       class="fade"
       loading="lazy"
       onload="this.style.opacity=1"
     />
   </div>
-  <section class="services-section">
-    <div class="services-split">
-      <div class="service-card">
-        <h2>Delivery Platters</h2>
-        <p>Italian dishes delivered, ready to serve</p>
+  <section class="highlighted">
+    <Container>
+      <div>
+        <h2>Services</h2>
+        <p>Authentic Italian catering for any occasion</p>
+        <p>Personalized menus and warm hospitality</p>
+        <p>Beautiful presentations and memorable experiences</p>
+
+        <div class="services-container">
+          {/** Service cards data and rendering */}
+          {
+            (() => {
+              const services = [
+                {
+                  image: "/assets/platter-wide2.webp",
+                  title: "Delivery Platters",
+                  description: [
+                    "Italian dishes delivered, ready to serve",
+                    "Perfect for office lunches, parties, and family gatherings",
+                    "Disposable platters for easy cleanup",
+                  ],
+                  cta: { label: "Order Platters", link: "/contact" },
+                },
+                {
+                  image: "/assets/iprepyoubake.webp",
+                  title: "I Prep, You Bake",
+                  description: [
+                    "Gourmet Italian dishes, expertly prepped by Regina",
+                    "Personalized menu, delivered to you",
+                    "Enjoy fresh-from-the-oven flavor at home—just heat and serve!",
+                  ],
+                  cta: { label: "Order Meals", link: "/contact" },
+                },
+                {
+                  image: "/assets/regina-onsite-chef.webp",
+                  title: "On-site Chef",
+                  description: [
+                    "Regina cooks and serves at your event",
+                    "Personalized menu planning",
+                    "Warm service, full setup and cleanup included",
+                  ],
+                  cta: { label: "Book Chef", link: "/contact" },
+                },
+                // Add more service objects here as needed
+              ];
+              return services.map((service) => (
+                <div class="service-card">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    class="service-img"
+                    loading="lazy"
+                  />
+                  <div class="service-card-content">
+                    <h2>{service.title}</h2>
+                    <ul class="service-desc">
+                      {service.description.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                    <a href={service.cta.link} class="service-cta-btn">
+                      {service.cta.label}
+                    </a>
+                  </div>
+                </div>
+              ));
+            })()
+          }
+        </div>
       </div>
-      <div class="service-card">
-        <h2>On-site Chef</h2>
-        <p>Regina cooks and serves at your event</p>
-      </div>
-    </div>
+    </Container>
   </section>
+
+  <section class="services-section"></section>
 
   <section class="great-for-section highlighted">
     <Container>
@@ -109,258 +172,299 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </Container>
   </section>
-</Layout>
-<style>
-  .hero-with-logo {
-    position: relative;
-  }
-  .hero-logo-centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 400px;
-    width: 60vw;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: var(--accent, #eab308);
-    color: #fff !important;
-    font-family: var(--header-font);
-    text-decoration: none !important;
-    font-size: 1.15rem;
-    padding: 0.9em 2em;
-    margin-top: 1.2rem;
-    transition: background 0.2s;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  }
-  .cta-btn:hover {
-    background: #b97a1a;
-  }
-  .great-for-section {
-    background: url("/assets/mushroom.webp") center/cover no-repeat;
-    position: relative;
-    min-height: 340px;
-  }
-  .great-for-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(32, 32, 32, 0.6); /* adjust opacity as needed */
-    z-index: 0;
-  }
-  .great-for-overlay {
-    /* background: rgba(32, 32, 32, 0.7); */
-    padding: 2.5rem 1.5rem;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    max-width: 600px;
-    margin: 2rem auto;
-    color: #fff;
-    position: relative;
-    z-index: 1;
-  }
-  .great-for-overlay h2,
-  .great-for-overlay ul,
-  .great-for-overlay li {
-    color: #fff;
-  }
-  h2 {
-    color: var(--accent);
-  }
 
-  section {
-    margin: 1rem 0;
-    padding: 2rem 0;
-    text-align: center;
-  }
-  section.highlighted {
-    background-color: var(--bg-highlight);
-  }
-
-  .home-tagline {
-    font-size: 1.3rem;
-    color: var(--accent, #eab308);
-    margin-bottom: 1.5rem;
-    font-family: var(--header-font);
-  }
-  .home-regina-img {
-    display: block;
-    margin: 0 auto 2rem auto;
-    width: 180px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  }
-  .home-intro {
-    font-size: 1.13rem;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-    color: #333;
-  }
-  .home-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-    font-family: var(--header-font);
-  }
-  .home-links a {
-    background-color: var(--text);
-    color: #fff;
-    padding: 0.7em 1.5em;
-    text-decoration: none;
-    font-size: 1.08rem;
-    transition: background 0.2s;
-  }
-  .home-links a:hover {
-    background: #b97a1a;
-    font-family: var(--header-font);
-  }
-
-  .home-cta {
-    margin-top: 2.5rem;
-    font-size: 1.15rem;
-    color: #222;
-  }
-  .home-cta a {
-    color: var(--accent, #eab308);
-    text-decoration: underline;
-    font-family: var(--header-font);
-  }
-
-  .home-hero-img {
-    position: relative;
-    width: 100vw;
-    height: 340px;
-    max-width: 100vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    overflow: hidden;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent);
-    top: -20px;
-  }
-  .hero-bg-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    display: block;
-    pointer-events: none;
-  }
-  section.home-hero {
-    padding-top: 0rem !important;
-  }
-  .platter-banner {
-    width: 100%;
-  }
-  .platter-banner img {
-    width: 100vw;
-    height: 300px;
-    display: block;
-    object-fit: cover;
-  }
-
-  .great-for-list {
-    list-style-type: none;
-    text-align: center; /* centers the text */
-    margin: 0 auto;
-    max-width: 600px; /* optional: for a nice width */
-    padding: 0;
-  }
-  .great-for-list li {
-    margin-bottom: 0.8em;
-  }
-
-  .home-tagline-secondary {
-    text-align: center;
-    font-size: 1.13rem;
-    color: #b97a1a;
-    margin: 1.2rem 0 0.5rem 0;
-    font-family: var(--header-font, serif);
-    letter-spacing: 0.01em;
-  }
-
-  .services-split {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items: stretch;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-  }
-  .service-card {
-    flex: 1 1 260px;
-    background: var(--bg-highlight, #f8f8f8);
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    padding: 2rem 1.5rem;
-    margin: 0 0.5rem;
-    min-width: 220px;
-    max-width: 400px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .service-card h2 {
-    color: var(--accent);
-    margin-bottom: 0.7rem;
-  }
-
-  .fade {
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  @media (max-width: 800px) {
-    .services-split {
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .service-card {
+  <style>
+    img {
       max-width: 100%;
-      margin: 0 auto;
     }
-  }
 
-  @media (max-width: 600px) {
-    .home-links {
-      flex-direction: column;
-      gap: 1.2rem;
+    /* .logo-banner {
+      width: 80%;
+    } */
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent, #eab308);
+      color: #fff !important;
+      font-family: var(--header-font);
+      text-decoration: none !important;
+      font-size: 1.15rem;
+      padding: 0.9em 2em;
+      margin-top: 1.2rem;
+      transition: background 0.2s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     }
-    .home-highlight {
-      padding: 1.1rem 0.5rem;
+    .cta-btn:hover {
+      background: #b97a1a;
     }
-    .home-regina-img {
-      width: 140px;
+    .great-for-section {
+      background: url("/assets/mushroom.webp") center/cover no-repeat;
+      position: relative;
+      min-height: 340px;
     }
-    .home-hero-img {
-      height: 260px;
+    .great-for-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(32, 32, 32, 0.6); /* adjust opacity as needed */
+      z-index: 0;
     }
-    .home-hero-img .hero-bg-img {
-      height: 300px;
-      width: 600px;
-      transform: scale(2) translateY(-40px);
+    .great-for-overlay {
+      /* background: rgba(32, 32, 32, 0.7); */
+      padding: 2.5rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+      margin: 2rem auto;
+      color: #fff;
+      position: relative;
+      z-index: 1;
     }
-    .home-hero-img img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
+    .great-for-overlay h2,
+    .great-for-overlay ul,
+    .great-for-overlay li {
+      color: #fff;
+    }
+    h2 {
+      color: var(--accent);
     }
 
     section {
-      margin-top: 0;
+      margin: 1rem 0;
+      padding: 2rem 0;
+      text-align: center;
     }
-  }
-</style>
+    section.highlighted {
+      background-color: var(--bg-highlight);
+    }
+
+    .home-regina-img {
+      display: block;
+      margin: 0 auto 2rem auto;
+      width: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      font-family: var(--header-font);
+    }
+    .home-links a {
+      background-color: var(--text);
+      color: #fff;
+      padding: 0.7em 1.5em;
+      text-decoration: none;
+      font-size: 1.08rem;
+      transition: background 0.2s;
+    }
+    .home-links a:hover {
+      background: #b97a1a;
+      font-family: var(--header-font);
+    }
+
+    .home-cta {
+      margin-top: 2.5rem;
+      font-size: 1.15rem;
+      color: #222;
+    }
+    .home-cta a {
+      color: var(--accent, #eab308);
+      text-decoration: underline;
+      font-family: var(--header-font);
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      display: block;
+      pointer-events: none;
+    }
+    section.home-hero {
+      padding-top: 0rem !important;
+    }
+    .platter-banner {
+      width: 100%;
+    }
+    .platter-banner img {
+      width: 100vw;
+      height: 540px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .great-for-list {
+      list-style-type: none;
+      text-align: center; /* centers the text */
+      margin: 0 auto;
+      max-width: 600px; /* optional: for a nice width */
+      padding: 0;
+    }
+    .great-for-list li {
+      margin-bottom: 0.8em;
+    }
+
+    .home-tagline-secondary {
+      text-align: center;
+      font-size: 1.13rem;
+      color: #b97a1a;
+      margin: 1.2rem 0 0.5rem 0;
+      font-family: var(--header-font, serif);
+      letter-spacing: 0.01em;
+    }
+
+    .services-container {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .services-container > * {
+      flex: 1 1 340px;
+      min-width: 300px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .service-card {
+      flex: 1 1 100%;
+      background: var(--bg-highlight, #f8f8f8);
+      /* border-radius: 12px; */
+      /* border: 2px solid var(--accent); */
+      box-shadow: 0 6px 32px rgba(0, 0, 0, 0.16);
+      margin: 0 0.5rem;
+      min-width: 220px;
+      max-width: 538px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 600px;
+      height: 100%;
+      justify-content: flex-start;
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+    }
+    .service-card h2 {
+      color: var(--accent);
+      margin: 1rem 0 0.7rem 0;
+    }
+    .service-img {
+      width: 100%;
+      height: 250px;
+      min-height: 140px;
+      object-fit: cover;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+      /* flex-shrink: 0; */
+      display: block;
+      max-width: none;
+      align-self: stretch;
+      /* border-radius: 12px 12px 0 0; */
+      margin-bottom: 0;
+    }
+
+    .service-card-content {
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 1 auto;
+      height: 100%;
+    }
+    .service-desc {
+      list-style: none;
+      margin: 0 0 1.2rem 0;
+      padding: 0;
+      text-align: center;
+      color: #444;
+      font-size: 1rem;
+      flex: 1 1 100%;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .service-desc li {
+      margin-bottom: 0.4em;
+      padding-left: 0;
+      position: relative;
+    }
+
+    .service-desc li {
+      margin-bottom: 0.75em;
+    }
+    .service-cta-btn {
+      display: inline-block;
+      background: var(--accent, #eab308);
+      color: #fff !important;
+      font-family: var(--header-font);
+      text-decoration: none !important;
+      font-size: 1.05rem;
+      padding: 0.7em 1.5em;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      align-self: center;
+      margin-top: auto;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .service-card > h2 {
+      margin-top: 0.5rem;
+      margin-bottom: 0.7rem;
+      flex-shrink: 0;
+      min-height: 2.6em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .fade {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    @media (max-width: 600px) {
+      .home-links {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .home-highlight {
+        padding: 1.1rem 0.5rem;
+      }
+      .home-regina-img {
+        width: 140px;
+      }
+
+      .platter-banner img {
+        height: 350px;
+      }
+
+      section {
+        margin-top: 0;
+      }
+
+      .services-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .service-card {
+        width: 100%;
+        margin: 0 auto;
+      }
+      .service-card img {
+        height: 300px;
+      }
+    }
+  </style>
+</Layout>

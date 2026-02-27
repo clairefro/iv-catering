@@ -7,7 +7,6 @@
   <div class="footer-links">
     <div>
       <a href="/">Home</a>
-      <a href="/about">About</a>
       <a href="/menu">Menu</a>
     </div>
     <div>
@@ -16,11 +15,10 @@
     </div>
   </div>
   <p class="footer-contact">
-    <a href="mailto:info@ivcatering.com">info@ivcatering.com</a> &nbsp;|&nbsp; <a
-      href="tel:15419089544">(541) 908-9544</a
-    >
+    <span>regina@iovinos-catering.com</span>&nbsp;|&nbsp;
+    <a href="tel:15419089544">(541) 908-9544</a>
   </p>
-  <p class="footer-tagline">Authentic Catering in Corvallis, Oregon</p>
+  <p class="footer-tagline">Authentic Italian Catering in Corvallis, Oregon</p>
   <p>
     &copy; <span id="footer-year"></span> Iovino's Catering. All rights reserved.
   </p>
@@ -40,7 +38,7 @@
     background: var(--text);
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1rem;
     padding-bottom: 4rem;
     margin-top: 2rem;
   }
@@ -98,6 +96,12 @@
     letter-spacing: 0.01em;
   }
   @media (max-width: 600px) {
+    footer {
+      padding: 1rem 0.5rem;
+    }
+    p {
+      font-size: 0.9em;
+    }
     .footer-links {
       flex-direction: column;
       gap: 0.65rem;
@@ -105,6 +109,12 @@
     }
     .footer-links div {
       align-items: center;
+    }
+    .footer-contact {
+      font-size: 0.9em;
+    }
+    .footer-tagline {
+      font-size: 0.7em;
     }
   }
 </style>
