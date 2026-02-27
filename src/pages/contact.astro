@@ -4,14 +4,22 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
+  <div class="hero-img-container">
+    <img
+      src="/assets/veggie-header.webp"
+      class="fade hero-img"
+      alt="Italian catering hero"
+      onload="this.style.opacity=1"
+    />
+  </div>
   <Container>
-    <h1>Contact</h1>
-    <p>Get in touch with us for catering quotes, bookings, or questions!</p>
+    <h1 style="margin-top: 1.5rem;">Contact</h1>
+    <p>Get in touch with me for catering quotes, bookings, or questions!</p>
     <ul>
-      <li>Email: info@ivcatering.com</li>
+      <li>Email: regina@iovinos-catering.com</li>
       <li>Phone: (541) 908-9544</li>
     </ul>
-    <h2 style="text-align:center">Get a quote or send a question</h2>
+    <h2 style="text-align:center;">For questions and quotes</h2>
     <form id="contactForm">
       <label>
         Full Name*
@@ -95,6 +103,34 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
+  .hero-img-container {
+    position: relative;
+    width: 100vw;
+    height: 200px;
+    max-width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    top: -36px;
+  }
+
+  .hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    display: block;
+    pointer-events: none;
+  }
+
   #contactForm {
     background: #fff;
     padding: 2rem;
@@ -160,6 +196,21 @@ import Layout from "../layouts/Layout.astro";
       padding: 1rem 0.5rem;
       max-width: 98vw;
       margin: 1.2rem auto;
+    }
+
+    .hero-img-container {
+      height: 160px;
+    }
+    .hero-img-container .hero-img {
+      height: 300px;
+      width: 600px;
+      transform: scale(2) translateY(-40px);
+    }
+    .hero-img-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
     }
   }
 </style>
