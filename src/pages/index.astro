@@ -15,19 +15,17 @@ import Layout from "../layouts/Layout.astro";
       alt="Italian catering hero"
       onload="this.style.opacity=1"
     />
-    <img
-      src="/assets/iovinos-logo.png"
-      alt="Iovino's Catering"
-      class="logo-banner hero-logo-centered"
-    />
   </div>
 
   <section class="home-hero">
     <Container>
+      <img
+        src="/assets/iovinos-logo.png"
+        alt="Iovino's Catering"
+        class="logo-banner"
+      />
       <div class="home-tagline-secondary">Authentic Italian Catering</div>
-      <div class="home-tagline-secondary">
-        Serving Corvallis, OR and surrounding areas
-      </div>
+      <div class="home-tagline-secondary">Serving Corvallis, Oregon</div>
 
       <h1 style="display:none;">Iovino's Catering</h1>
       <p class="home-tagline">You make the call... we do it all!</p>
@@ -114,15 +112,9 @@ import Layout from "../layouts/Layout.astro";
   .hero-with-logo {
     position: relative;
   }
-  .hero-logo-centered {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 400px;
-    width: 60vw;
-    z-index: 2;
-    pointer-events: none;
+
+  .logo-banner {
+    max-width: 100%;
   }
   .cta-btn {
     display: inline-block;
