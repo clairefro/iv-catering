@@ -65,16 +65,6 @@ import Layout from "../layouts/Layout.astro";
     </Container>
   </section>
 
-  <section class="highlighted">
-    <Container>
-      <div>
-        <h2>What We Offer</h2>
-        <p>Authentic Italian catering for any occasion</p>
-        <p>Personalized menus and warm hospitality</p>
-        <p>Beautiful presentations and memorable experiences</p>
-      </div>
-    </Container>
-  </section>
   <div class="platter-banner">
     <img
       src="/assets/platter-wide.webp"
@@ -84,18 +74,80 @@ import Layout from "../layouts/Layout.astro";
       onload="this.style.opacity=1"
     />
   </div>
-  <section class="services-section">
-    <div class="services-split">
-      <div class="service-card">
-        <h2>Delivery Platters</h2>
-        <p>Italian dishes delivered, ready to serve</p>
+  <section class="highlighted">
+    <Container>
+      <div>
+        <h2>Services</h2>
+        <p>Authentic Italian catering for any occasion</p>
+        <p>Personalized menus and warm hospitality</p>
+        <p>Beautiful presentations and memorable experiences</p>
+
+        <div class="services-container">
+          {/** Service cards data and rendering */}
+          {
+            (() => {
+              const services = [
+                {
+                  image: "/assets/platter-wide2.webp",
+                  title: "Delivery Platters",
+                  description: [
+                    "Italian dishes delivered, ready to serve",
+                    "Perfect for office lunches, parties, and family gatherings",
+                    "Disposable platters for easy cleanup",
+                  ],
+                  cta: { label: "Order Platters", link: "/contact" },
+                },
+                {
+                  image: "/assets/iprepyoubake.webp",
+                  title: "I Prep, You Bake",
+                  description: [
+                    "Gourmet Italian dishes, expertly prepped by Regina",
+                    "Personalized menu, delivered to you",
+                    "Enjoy fresh-from-the-oven flavor at home—just heat and serve!",
+                  ],
+                  cta: { label: "Order Meals", link: "/contact" },
+                },
+                {
+                  image: "/assets/regina-onsite-chef.webp",
+                  title: "On-site Chef",
+                  description: [
+                    "Regina cooks and serves at your event",
+                    "Personalized menu planning",
+                    "Warm service, full setup and cleanup included",
+                  ],
+                  cta: { label: "Book Chef", link: "/contact" },
+                },
+                // Add more service objects here as needed
+              ];
+              return services.map((service) => (
+                <div class="service-card">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    class="service-img"
+                    loading="lazy"
+                  />
+                  <div class="service-card-content">
+                    <h2>{service.title}</h2>
+                    <ul class="service-desc">
+                      {service.description.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                    <a href={service.cta.link} class="service-cta-btn">
+                      {service.cta.label}
+                    </a>
+                  </div>
+                </div>
+              ));
+            })()
+          }
+        </div>
       </div>
-      <div class="service-card">
-        <h2>On-site Chef</h2>
-        <p>Regina cooks and serves at your event</p>
-      </div>
-    </div>
+    </Container>
   </section>
+
+  <section class="services-section"></section>
 
   <section class="great-for-section highlighted">
     <Container>
@@ -125,6 +177,10 @@ import Layout from "../layouts/Layout.astro";
     img {
       max-width: 100%;
     }
+
+    /* .logo-banner {
+      width: 80%;
+    } */
 
     .cta-btn {
       display: inline-block;
@@ -266,47 +322,116 @@ import Layout from "../layouts/Layout.astro";
       letter-spacing: 0.01em;
     }
 
-    .services-split {
+    .services-container {
       display: flex;
-      gap: 2rem;
-      justify-content: center;
-      align-items: stretch;
-      margin: 2rem 0;
+      gap: 1.5rem;
       flex-wrap: wrap;
     }
+    .services-container > * {
+      flex: 1 1 340px;
+      min-width: 300px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
     .service-card {
-      flex: 1 1 260px;
+      flex: 1 1 100%;
       background: var(--bg-highlight, #f8f8f8);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-      padding: 2rem 1.5rem;
+      /* border-radius: 12px; */
+      /* border: 2px solid var(--accent); */
+      box-shadow: 0 6px 32px rgba(0, 0, 0, 0.16);
       margin: 0 0.5rem;
       min-width: 220px;
-      max-width: 400px;
+      max-width: 538px;
       text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: stretch;
+      min-height: 600px;
+      height: 100%;
+      justify-content: flex-start;
+      position: relative;
+      padding: 0;
+      overflow: hidden;
     }
     .service-card h2 {
       color: var(--accent);
+      margin: 1rem 0 0.7rem 0;
+    }
+    .service-img {
+      width: 100%;
+      height: 250px;
+      min-height: 140px;
+      object-fit: cover;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+      /* flex-shrink: 0; */
+      display: block;
+      max-width: none;
+      align-self: stretch;
+      /* border-radius: 12px 12px 0 0; */
+      margin-bottom: 0;
+    }
+
+    .service-card-content {
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 1 auto;
+      height: 100%;
+    }
+    .service-desc {
+      list-style: none;
+      margin: 0 0 1.2rem 0;
+      padding: 0;
+      text-align: center;
+      color: #444;
+      font-size: 1rem;
+      flex: 1 1 100%;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .service-desc li {
+      margin-bottom: 0.4em;
+      padding-left: 0;
+      position: relative;
+    }
+
+    .service-desc li {
+      margin-bottom: 0.75em;
+    }
+    .service-cta-btn {
+      display: inline-block;
+      background: var(--accent, #eab308);
+      color: #fff !important;
+      font-family: var(--header-font);
+      text-decoration: none !important;
+      font-size: 1.05rem;
+      padding: 0.7em 1.5em;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      align-self: center;
+      margin-top: auto;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .service-card > h2 {
+      margin-top: 0.5rem;
       margin-bottom: 0.7rem;
+      flex-shrink: 0;
+      min-height: 2.6em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
+      text-align: center;
     }
 
     .fade {
       opacity: 0;
       transition: opacity 0.3s;
-    }
-
-    @media (max-width: 800px) {
-      .services-split {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .service-card {
-        max-width: 100%;
-        margin: 0 auto;
-      }
     }
 
     @media (max-width: 600px) {
@@ -327,6 +452,18 @@ import Layout from "../layouts/Layout.astro";
 
       section {
         margin-top: 0;
+      }
+
+      .services-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .service-card {
+        width: 100%;
+        margin: 0 auto;
+      }
+      .service-card img {
+        height: 300px;
       }
     }
   </style>
