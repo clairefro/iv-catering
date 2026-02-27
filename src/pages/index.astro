@@ -3,10 +3,6 @@ import Container from "../components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Fragment slot="head">
-  <link rel="preload" as="image" href="/assets/veggie-header.webp" />
-</Fragment>
-
 <Layout>
   <h1 style="display:none;">Iovino's Catering</h1>
 
@@ -23,7 +19,7 @@ import Layout from "../layouts/Layout.astro";
       <img
         src="/assets/hero1.webp"
         alt="Iovino's Catering"
-        class="fade"
+        class="fade hero-img"
         onload="this.style.opacity=1"
       />
 
@@ -230,9 +226,12 @@ import Layout from "../layouts/Layout.astro";
       max-width: 100%;
     }
 
-    /* .logo-banner {
-      width: 80%;
-    } */
+    .logo-banner {
+      width: 65%;
+    }
+    .hero-img {
+      max-height: 750px;
+    }
 
     .cta-btn {
       display: inline-block;
