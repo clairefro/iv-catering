@@ -13,6 +13,8 @@ import Layout from "../layouts/Layout.astro";
     />
   </div>
   <Container>
+    
+    <a href="/" class="back-link">← Back to Home</a>
     <h1 style="margin-top: 1.5rem;">Contact</h1>
     <p>Get in touch with me for catering quotes, bookings, or questions!</p>
     <ul>
@@ -212,5 +214,18 @@ import Layout from "../layouts/Layout.astro";
       display: block;
       margin: 0 auto;
     }
+  }
+  .back-link {
+    display: inline-block;
+    margin: 1.2rem 0 0.5rem 0;
+    font-size: 1.08rem;
+    color: var(--accent, #eab308);
+    text-decoration: underline;
+    font-family: var(--header-font, serif);
+    transition: color 0.2s;
+  }
+  .back-link:hover {
+    color: #b97a1a;
+    text-decoration: underline;
   }
 </style>

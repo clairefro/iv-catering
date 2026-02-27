@@ -5,9 +5,25 @@ import Container from "../components/Container.astro";
 
 <Layout>
   <Container>
+    <a href="/" class="back-link">← Back to Home</a>
     <div style="text-align:center">
       <h2>404</h2>
       <p>Page not found</p>
     </div>
   </Container>
+  <style>
+    .back-link {
+      display: inline-block;
+      margin: 1.2rem 0 0.5rem 0;
+      font-size: 1.08rem;
+      color: var(--accent, #eab308);
+      text-decoration: underline;
+      font-family: var(--header-font, serif);
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #b97a1a;
+      text-decoration: underline;
+    }
+  </style>
 </Layout>

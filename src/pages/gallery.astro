@@ -7,6 +7,7 @@ import GalleryViewer from "../components/GalleryViewer.astro";
 
 <Layout>
   <Container>
+    <a href="/" class="back-link">← Back to Home</a>
     <div style="text-align: center;">
       <h1>Gallery</h1>
       <p>See some of my past spreads to inspire your next event</p>
@@ -28,5 +29,18 @@ import GalleryViewer from "../components/GalleryViewer.astro";
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  .back-link {
+    display: inline-block;
+    margin: 1.2rem 0 0.5rem 0;
+    font-size: 1.08rem;
+    color: var(--accent, #eab308);
+    text-decoration: underline;
+    font-family: var(--header-font, serif);
+    transition: color 0.2s;
+  }
+  .back-link:hover {
+    color: #b97a1a;
+    text-decoration: underline;
   }
 </style>
