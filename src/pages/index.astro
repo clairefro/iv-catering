@@ -78,9 +78,11 @@ import Layout from "../layouts/Layout.astro";
     <Container>
       <div>
         <h2>Services</h2>
-        <p>Authentic Italian catering for any occasion</p>
-        <p>Personalized menus and warm hospitality</p>
-        <p>Beautiful presentations and memorable experiences</p>
+        <div style="margin-bottom:2rem;">
+          <p>Authentic Italian catering for any occasion</p>
+          <p>Personalized menus and warm hospitality</p>
+          <p>Beautiful presentations and memorable experiences</p>
+        </div>
 
         <div class="services-container">
           {/** Service cards data and rendering */}
@@ -160,10 +162,38 @@ import Layout from "../layouts/Layout.astro";
           <li>Corporate events & business luncheons</li>
           <li>Graduations & milestone celebrations</li>
           <li>Casual get-togethers with friends</li>
+          <li>...any special occassion!</li>
         </ul>
       </div>
     </Container>
   </section>
+  <section class="testimonials-section highlighted">
+    <Container>
+      <h2>Testimonials</h2>
+      <div class="testimonials-list">
+        {
+          [
+            {
+              quote:
+                "I absolutely love Iovino's catering—the food is always delicious, presentation is beautiful, and Regina makes every event a party. Friends are so excited to accept invitations when they know that Regina is catering! She takes the stress out of hosting.",
+              author: "— Gloria Krahn",
+            },
+            {
+              quote:
+                "The food is absolutely delicious and guaranteed to impress your guests. Every dish was flavorful, beautifully presented, and clearly made with care. They were punctual and arrived right on time, which made everything feel smooth and stress-free. On top of that, they were incredibly easy to work with. Very responsive, professional, and accommodating throughout the entire process. If you're looking for a caterer who delivers outstanding food and exceptional service, Regina is the one to choose!",
+              author: "— Lynn Johnson",
+            },
+          ].map((testimonial) => (
+            <div class="testimonial">
+              <p class="testimonial-quote">{`“${testimonial.quote}”`}</p>
+              <div class="testimonial-author">{testimonial.author}</div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
   <section>
     <Container>
       <div class="home-cta">
@@ -206,7 +236,7 @@ import Layout from "../layouts/Layout.astro";
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(32, 32, 32, 0.6); /* adjust opacity as needed */
+      background: rgba(0, 0, 0, 0.7); /* adjust opacity as needed */
       z-index: 0;
     }
     .great-for-overlay {
@@ -304,9 +334,9 @@ import Layout from "../layouts/Layout.astro";
 
     .great-for-list {
       list-style-type: none;
-      text-align: center; /* centers the text */
+      text-align: center;
       margin: 0 auto;
-      max-width: 600px; /* optional: for a nice width */
+      max-width: 600px;
       padding: 0;
     }
     .great-for-list li {
@@ -427,6 +457,42 @@ import Layout from "../layouts/Layout.astro";
       justify-content: center;
       line-height: 1.2;
       text-align: center;
+    }
+
+    .testimonials-section {
+      background: var(--bg-highlight);
+      padding: 2.5rem 0 2rem 0;
+      text-align: center;
+    }
+    .testimonials-list {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0 0 0;
+    }
+    .testimonial {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      max-width: 340px;
+      flex: 1 1 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-quote {
+      font-style: italic;
+      color: #444;
+      font-size: 1.08rem;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial-author {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1rem;
     }
 
     .fade {
