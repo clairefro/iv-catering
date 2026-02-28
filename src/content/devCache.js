@@ -55,3 +55,13 @@ export function setTestimonialsCache(data) {
   cache.testimonials = data;
   writeCacheFile(cache);
 }
+
+export function getFeaturedTestimonialsCache() {
+  return readCacheFile().featuredTestimonials || null;
+}
+
+export function setFeaturedTestimonialsCache(data) {
+  const cache = readCacheFile();
+  cache.featuredTestimonials = data;
+  writeCacheFile(cache);
+}

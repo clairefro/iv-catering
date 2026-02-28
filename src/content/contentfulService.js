@@ -7,6 +7,8 @@ import {
   setMenuCache,
   getTestimonialsCache,
   setTestimonialsCache,
+  getFeaturedTestimonialsCache,
+  setFeaturedTestimonialsCache,
 } from "./devCache.js";
 
 const client = createClient({
@@ -70,5 +72,28 @@ export async function getTestimonials() {
   );
   if (isDev && typeof setTestimonialsCache === "function")
     setTestimonialsCache(testimonials);
+  return testimonials;
+}
+
+// Fetch only featured testimonials from Contentful, with local dev cache
+export async function getFeaturedTestimonials() {
+  if (isDev && typeof getFeaturedTestimonialsCache === "function") {
+    const cached = getFeaturedTestimonialsCache();
+    if (cached) return cached;
+  }
+  const entries = await client.getEntries({
+    content_type: "testimonial",
+    "fields.isFeatured": true,
+  });
+  if (!entries.items.length) return [];
+  const testimonials = entries.items.map((item) => ({
+    id: item.sys.id,
+    quote: item.fields.quote, // rich text
+    author: item.fields.author,
+    isFeatured: !!item.fields.isFeatured,
+  }));
+  if (isDev && typeof setFeaturedTestimonialsCache === "function") {
+    setFeaturedTestimonialsCache(testimonials);
+  }
   return testimonials;
 }
