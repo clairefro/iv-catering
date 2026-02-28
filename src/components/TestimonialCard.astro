@@ -32,34 +32,40 @@ const isLong = plainText.length > charLimit;
   <div class="testimonial-card__author">— {author}</div>
 </div>
 
-<script is:inline>
-  document.querySelectorAll(".testimonial-card__toggle").forEach((toggle) => {
-    if (toggle.dataset.bound) return;
-    toggle.dataset.bound = "true";
-    const card = toggle.closest(".testimonial-card");
-    if (!card) return;
-    const quote = card.querySelector(".testimonial-card__quote");
-    if (!quote) return;
-    const collapsedPx = quote.dataset.collapsedHeight + "px";
-    toggle.addEventListener("click", () => {
-      if (quote.classList.contains("collapsed")) {
-        quote.style.maxHeight = quote.scrollHeight + "px";
-        quote.classList.remove("collapsed");
-        toggle.textContent = "Show less";
-        const onEnd = () => {
-          quote.style.maxHeight = "none";
-          quote.removeEventListener("transitionend", onEnd);
-        };
-        quote.addEventListener("transitionend", onEnd);
-      } else {
-        quote.style.maxHeight = quote.scrollHeight + "px";
-        quote.offsetHeight;
-        quote.style.maxHeight = collapsedPx;
-        quote.classList.add("collapsed");
-        toggle.textContent = "Show more...";
-      }
+<script>
+  function bindTestimonialToggles() {
+    document.querySelectorAll(".testimonial-card__toggle").forEach((toggle) => {
+      if ((toggle as HTMLElement).dataset.bound) return;
+      (toggle as HTMLElement).dataset.bound = "true";
+      const card = toggle.closest(".testimonial-card");
+      if (!card) return;
+      const quote = card.querySelector(
+        ".testimonial-card__quote",
+      ) as HTMLElement | null;
+      if (!quote) return;
+      const collapsedPx = quote.dataset.collapsedHeight + "px";
+      toggle.addEventListener("click", () => {
+        if (quote.classList.contains("collapsed")) {
+          quote.style.maxHeight = quote.scrollHeight + "px";
+          quote.classList.remove("collapsed");
+          toggle.textContent = "Show less";
+          const onEnd = () => {
+            quote.style.maxHeight = "none";
+            quote.removeEventListener("transitionend", onEnd);
+          };
+          quote.addEventListener("transitionend", onEnd);
+        } else {
+          quote.style.maxHeight = quote.scrollHeight + "px";
+          // Force reflow
+          quote.offsetHeight;
+          quote.style.maxHeight = collapsedPx;
+          quote.classList.add("collapsed");
+          toggle.textContent = "Show more...";
+        }
+      });
     });
-  });
+  }
+  document.addEventListener("astro:page-load", bindTestimonialToggles);
 </script>
 
 <style>
