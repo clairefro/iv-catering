@@ -15,6 +15,9 @@ const html = documentToHtmlString(menuRichText);
     <section>
       <h1>Menu</h1>
       {menuRichText ? <div set:html={html} /> : <p>Coming soon...</p>}
+      <div class="menu-cta-wrapper">
+        <a href="/contact" class="cta-btn menu-cta">Get a Quote</a>
+      </div>
     </section>
   </Container>
   <style>
@@ -30,6 +33,27 @@ const html = documentToHtmlString(menuRichText);
     .back-link:hover {
       color: #b97a1a;
       text-decoration: underline;
+    }
+    .menu-cta-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 2.5rem 0 1.5rem 0;
+    }
+    .menu-cta {
+      background: var(--accent, #eab308);
+      color: #fff !important;
+      font-family: var(--header-font);
+      text-decoration: none !important;
+      font-size: 1.15rem;
+      padding: 0.9em 2em;
+      border: none;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      transition: background 0.2s;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .menu-cta:hover {
+      background: #b97a1a;
     }
   </style>
 </Layout>
