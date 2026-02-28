@@ -30,8 +30,9 @@ import { ClientRouter } from "astro:transitions";
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "FoodEstablishment",
+        "@type": "CateringBusiness",
         "name": "Iovino's Catering",
+        "description": "Authentic Italian catering in Corvallis, Oregon. Weddings, events, parties, and more.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Corvallis",
@@ -41,7 +42,16 @@ import { ClientRouter } from "astro:transitions";
         "telephone": "+1-541-908-9544",
         "url": "https://iovinos-catering.com",
         "servesCuisine": "Italian",
-        "areaServed": "Corvallis, OR"
+        "areaServed": {
+          "@type": "City",
+          "name": "Corvallis",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Oregon"
+          }
+        },
+        "priceRange": "$$",
+        "sameAs": []
       }
     </script>
     {/* OpenGraph Facebook */}
@@ -54,7 +64,7 @@ import { ClientRouter } from "astro:transitions";
       property="og:description"
       content="Authentic Italian catering in Corvallis, Oregon. Weddings, events, parties, and more. Contact Iovino's Catering for delicious, memorable food and service."
     />
-    <meta property="og:url" content="https://iovinoscatering.com/" />
+    <meta property="og:url" content="https://iovinos-catering.com/" />
     <meta property="og:image" content="/assets/iovinos-og.png" />
     {/* OpenGraph: Twitter */}
     <meta name="twitter:card" content="summary_large_image" />

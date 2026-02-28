@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://iovinos-catering.com/sitemap-index.xml
