@@ -44,6 +44,7 @@ highlighted">
       gap: 2rem;
       justify-content: center;
       flex-wrap: wrap;
+      align-items: flex-start;
       margin: 2rem 0 0 0;
     }
     .testimonial {
@@ -52,11 +53,13 @@ highlighted">
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       padding: 2rem 1.5rem 1.5rem 1.5rem;
       max-width: 340px;
+      min-width: 220px;
       flex: 1 1 260px;
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 1.5rem;
+      /* Remove any height or align-self constraints to allow variable height */
     }
     .testimonial-quote {
       font-style: italic;
