@@ -5,6 +5,8 @@ import {
   setGalleryCache,
   getMenuCache,
   setMenuCache,
+  getTestimonialsCache,
+  setTestimonialsCache,
 } from "./devCache.js";
 
 const client = createClient({
@@ -46,4 +48,27 @@ export async function getMenuRichText() {
   const text = entries.items[0].fields.text;
   if (isDev) setMenuCache(text);
   return text;
+}
+
+// Fetch testimonials from Contentful, order by isFeatured first, with local dev cache
+export async function getTestimonials() {
+  if (isDev && typeof getTestimonialsCache === "function") {
+    const cached = getTestimonialsCache();
+    if (cached) return cached;
+  }
+  const entries = await client.getEntries({ content_type: "testimonial" });
+  if (!entries.items.length) return [];
+  // Map and sort: featured first
+  const testimonials = entries.items.map((item) => ({
+    id: item.sys.id,
+    quote: item.fields.quote, // rich text
+    author: item.fields.author,
+    isFeatured: !!item.fields.isFeatured,
+  }));
+  testimonials.sort((a, b) =>
+    b.isFeatured === a.isFeatured ? 0 : b.isFeatured ? 1 : -1,
+  );
+  if (isDev && typeof setTestimonialsCache === "function")
+    setTestimonialsCache(testimonials);
+  return testimonials;
 }

@@ -45,3 +45,13 @@ export function setMenuCache(data) {
   cache.menu = data;
   writeCacheFile(cache);
 }
+
+export function getTestimonialsCache() {
+  return readCacheFile().testimonials || null;
+}
+
+export function setTestimonialsCache(data) {
+  const cache = readCacheFile();
+  cache.testimonials = data;
+  writeCacheFile(cache);
+}
