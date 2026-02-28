@@ -1,46 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/Container.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
 import { getTestimonials } from "../content/contentfulService.js";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
-const CHAR_LIMIT = 420;
 const testimonials = await getTestimonials();
 ---
 
 <Layout>
   <Container>
     <a href="/" class="back-link">← Back to Home</a>
-    <section class="testimonials-section
-highlighted">
+    <section class="testimonials-section highlighted">
       <h1 style="margin-top:1rem;">Testimonials</h1>
       <div class="testimonials-list">
         {
           testimonials && testimonials.length > 0 ? (
-            testimonials.map((testimonial: any) => {
-              const html = documentToHtmlString(testimonial.quote);
-              const plainText = html.replace(/<[^>]*>/g, "");
-              const isLong = plainText.length > CHAR_LIMIT;
-              return (
-                <div class="testimonial">
-                  <div
-                    class={`testimonial-quote${isLong ? " collapsed" : ""}`}
-                    set:html={html}
-                  />
-                  {isLong && (
-                    <button
-                      class="testimonial-toggle"
-                      style="font-style: italic;"
-                    >
-                      Show more...
-                    </button>
-                  )}
-                  <div class="testimonial-author">
-                    — {testimonial.author}
-                  </div>{" "}
-                </div>
-              );
-            })
+            testimonials.map((testimonial: any) => (
+              <TestimonialCard
+                quote={testimonial.quote}
+                author={testimonial.author}
+                charLimit={420}
+                collapsedHeight={270}
+              />
+            ))
           ) : (
             <p>Coming soon!</p>
           )
@@ -61,84 +43,12 @@ highlighted">
       align-items: flex-start;
       margin: 2rem 0 0 0;
     }
-    .testimonial {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      max-width: 340px;
-      min-width: 220px;
-      flex: 1 1 260px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      /* Remove any height or align-self constraints to allow variable height */
-    }
-    .testimonial-quote {
-      font-style: italic;
-      color: #444;
-      font-size: 1.08rem;
-      margin-bottom: 1.2rem;
-    }
-    .testimonial-quote.collapsed {
-      max-height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
-    .testimonial-quote.collapsed::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(transparent, #fff);
-      pointer-events: none;
-    }
-    .testimonial-toggle {
-      background: none;
-      border: none;
-      color: var(--accent);
-      cursor: pointer;
-      font-size: 0.95rem;
-      padding: 0;
-      margin-bottom: 0.5rem;
-    }
-    .testimonial-toggle:hover {
-      text-decoration: underline;
-    }
-    .testimonial-author {
-      color: var(--accent);
-      font-weight: bold;
-      font-size: 1rem;
-    }
     @media (max-width: 600px) {
       .testimonials-list {
         flex-direction: column;
         gap: 1.2rem;
         align-items: center;
       }
-      .testimonial {
-        max-width: 98vw;
-        width: 100%;
-      }
     }
   </style>
 </Layout>
-
-<script is:inline>
-  document.querySelectorAll(".testimonial-toggle").forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const quote = toggle.previousElementSibling;
-      if (!quote) return;
-      if (quote.classList.contains("collapsed")) {
-        quote.classList.remove("collapsed");
-        toggle.textContent = "Show less";
-      } else {
-        quote.classList.add("collapsed");
-        toggle.textContent = "Show more...";
-      }
-    });
-  });
-</script>

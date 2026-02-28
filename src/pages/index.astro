@@ -2,7 +2,7 @@
 import Container from "../components/Container.astro";
 import Layout from "../layouts/Layout.astro";
 import { getFeaturedTestimonials } from "../content/contentfulService.js";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import TestimonialCard from "../components/TestimonialCard.astro";
 
 const featuredTestimonials = await getFeaturedTestimonials();
 ---
@@ -178,13 +178,12 @@ const featuredTestimonials = await getFeaturedTestimonials();
         {
           featuredTestimonials && featuredTestimonials.length > 0 ? (
             featuredTestimonials.map((testimonial: any) => (
-              <div class="testimonial">
-                <div
-                  class="testimonial-quote"
-                  set:html={documentToHtmlString(testimonial.quote)}
-                />
-                <div class="testimonial-author">{testimonial.author}</div>
-              </div>
+              <TestimonialCard
+                quote={testimonial.quote}
+                author={testimonial.author}
+                charLimit={500}
+                collapsedHeight={270}
+              />
             ))
           ) : (
             <p>No testimonials found.</p>
@@ -499,29 +498,6 @@ const featuredTestimonials = await getFeaturedTestimonials();
       justify-content: center;
       flex-wrap: wrap;
       margin-bottom: 2rem;
-    }
-    .testimonial {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      max-width: 340px;
-      flex: 1 1 260px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    .testimonial-quote {
-      font-style: italic;
-      color: #444;
-      font-size: 1.08rem;
-      margin-bottom: 1.2rem;
-    }
-    .testimonial-author {
-      color: var(--accent);
-      font-weight: bold;
-      font-size: 1rem;
     }
 
     .testimonials-cta-wrapper {

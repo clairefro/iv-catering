@@ -1,0 +1,123 @@
+---
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+interface Props {
+  quote: any;
+  author: string;
+  charLimit?: number;
+  collapsedHeight?: number;
+}
+
+const { quote, author, charLimit = 420, collapsedHeight = 200 } = Astro.props;
+
+const html = documentToHtmlString(quote);
+const plainText = html.replace(/<[^>]*>/g, "");
+const isLong = plainText.length > charLimit;
+---
+
+<div class="testimonial-card">
+  <div
+    class={`testimonial-card__quote${isLong ? " collapsed" : ""}`}
+    data-collapsed-height={collapsedHeight}
+    style={isLong ? `max-height: ${collapsedHeight}px` : undefined}
+    set:html={html}
+  />
+  {
+    isLong && (
+      <button class="testimonial-card__toggle" style="font-style: italic;">
+        Show more...
+      </button>
+    )
+  }
+  <div class="testimonial-card__author">— {author}</div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll(".testimonial-card__toggle").forEach((toggle) => {
+    if (toggle.dataset.bound) return;
+    toggle.dataset.bound = "true";
+    const card = toggle.closest(".testimonial-card");
+    if (!card) return;
+    const quote = card.querySelector(".testimonial-card__quote");
+    if (!quote) return;
+    const collapsedPx = quote.dataset.collapsedHeight + "px";
+    toggle.addEventListener("click", () => {
+      if (quote.classList.contains("collapsed")) {
+        quote.style.maxHeight = quote.scrollHeight + "px";
+        quote.classList.remove("collapsed");
+        toggle.textContent = "Show less";
+        const onEnd = () => {
+          quote.style.maxHeight = "none";
+          quote.removeEventListener("transitionend", onEnd);
+        };
+        quote.addEventListener("transitionend", onEnd);
+      } else {
+        quote.style.maxHeight = quote.scrollHeight + "px";
+        quote.offsetHeight;
+        quote.style.maxHeight = collapsedPx;
+        quote.classList.add("collapsed");
+        toggle.textContent = "Show more...";
+      }
+    });
+  });
+</script>
+
+<style>
+  .testimonial-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    min-width: 220px;
+    width: 100%;
+    flex: 1 1 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-card__quote {
+    font-style: italic;
+    color: #444;
+    font-size: 1.08rem;
+    margin-bottom: 1.2rem;
+    transition: max-height 0.4s ease;
+    overflow: hidden;
+  }
+  .testimonial-card__quote.collapsed {
+    position: relative;
+  }
+  .testimonial-card__quote.collapsed::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, #fff);
+    pointer-events: none;
+  }
+  .testimonial-card__toggle {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+  .testimonial-card__toggle:hover {
+    text-decoration: underline;
+  }
+  .testimonial-card__author {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  @media (max-width: 600px) {
+    .testimonial-card {
+      max-width: 98vw;
+      width: 100%;
+    }
+  }
+</style>
