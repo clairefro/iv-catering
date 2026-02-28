@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+---
+
+<Layout>
+  <Container>
+    <a href="/" class="back-link">← Back to Home</a>
+    <section class="testimonials-section highlighted">
+      <h1 style="margin-top:1rem;">Testimonials</h1>
+      <div class="testimonials-list">
+        {
+          [
+            {
+              quote:
+                "I'm prejudiced, having worked with Regina for many years, but as an Italian, I'd say no one but my mother cooks like Regina! And my mother even looked like Regina 50 years ago!",
+              author: "— Rich Carone",
+            },
+            {
+              quote:
+                "I absolutely love Iovino's catering—the food is always delicious, presentation is beautiful, and Regina makes every event a party. Friends are so excited to accept invitations when they know that Regina is catering! She takes the stress out of hosting.",
+              author: "— Gloria Krahn",
+            },
+            {
+              quote:
+                "The food is absolutely delicious and guaranteed to impress your guests. Every dish was flavorful, beautifully presented, and clearly made with care. Regina was punctual and arrived right on time, which made everything feel smooth and stress-free. On top of that, she was incredibly easy to work with. Very responsive, professional, and accommodating throughout the entire process. If you're looking for a caterer who delivers outstanding food and exceptional service, Regina is the one to choose!",
+              author: "— Lynn Johnson",
+            },
+            {
+              quote: `Okay, Okay, you need to eat food prepared by Regina Iovino. If you can imagine  Antipasti platters so beautiful and tasteful as if prepared in Tuscany... this is the person who you want to make them for your party, She doesn't stop with your hors d'oeuvres. She's just getting started.
+
+The meats are usually all  from Molinari Meat Company in San Francisco, which is where I am from. I now reside in Eugene, Oregon, and this is the closest I have come to authentic Italian cooking in Oregon. The assorted salamis, Coppa, cheeses, peppers, etc. etc. are all amazing...creating a pallet of great Italian freshness, served with sliced baguette.  Along with the Antipasti comes a basil pesto dip for the veggies and bread that we called "Italian crack cocaine" because it so adicting, you might forget about the main course. The chopped salad with the gorgonzola, and hazelnuts is a crowd favorite!!!
+ 
+We are still warming up....
+I have had her salmon roasted in parchment paper with sundried tomatoes, artichokes, and onions in a sweet citrus sauce.... honestly there is no better fish recipe in the Northwest that can beat this. Another favorite is the Tiger Prawns in a basil pesto sauce.
+ 
+We haven't even gotten to the Pasta Salads or the Pasta or the Polpetta (Meat Balls)
+ 
+Any more and I will start drooling. So Mangia and Enjoy!!!`,
+              author: "— Dominic Puccinelli",
+            },
+          ].map((testimonial) => (
+            <div class="testimonial">
+              <p class="testimonial-quote">{`“${testimonial.quote}”`}</p>
+              <div class="testimonial-author">{testimonial.author}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </Container>
+  <style>
+    .testimonials-section {
+      padding: 2.5rem 0 2rem 0;
+      text-align: center;
+    }
+    .testimonials-list {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0 0 0;
+    }
+    .testimonial {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      max-width: 340px;
+      flex: 1 1 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-quote {
+      font-style: italic;
+      color: #444;
+      font-size: 1.08rem;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial-author {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      .testimonials-list {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: center;
+      }
+      .testimonial {
+        max-width: 98vw;
+        width: 100%;
+      }
+    }
+  </style>
+</Layout>

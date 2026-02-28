@@ -4,6 +4,7 @@ const { pathname } = Astro.url;
 const links = [
   { path: "/", text: "Home", isHome: true },
   { path: "/menu", text: "Menu" },
+  { path: "/testimonials", text: "Testimonials" },
   { path: "/gallery", text: "Gallery" },
   { path: "/contact", text: "Contact" },
 ];
@@ -192,7 +193,7 @@ const links = [
     color: var(--accent);
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 780px) {
     nav {
       padding: 0.5rem 0.5rem 0.5rem 0.5rem;
       position: sticky;

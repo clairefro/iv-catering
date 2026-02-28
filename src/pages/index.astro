@@ -184,11 +184,6 @@ import Layout from "../layouts/Layout.astro";
                 "I absolutely love Iovino's catering—the food is always delicious, presentation is beautiful, and Regina makes every event a party. Friends are so excited to accept invitations when they know that Regina is catering! She takes the stress out of hosting.",
               author: "— Gloria Krahn",
             },
-            {
-              quote:
-                "The food is absolutely delicious and guaranteed to impress your guests. Every dish was flavorful, beautifully presented, and clearly made with care. Regina was punctual and arrived right on time, which made everything feel smooth and stress-free. On top of that, she was incredibly easy to work with. Very responsive, professional, and accommodating throughout the entire process. If you're looking for a caterer who delivers outstanding food and exceptional service, Regina is the one to choose!",
-              author: "— Lynn Johnson",
-            },
           ].map((testimonial) => (
             <div class="testimonial">
               <p class="testimonial-quote">{`“${testimonial.quote}”`}</p>
@@ -196,6 +191,12 @@ import Layout from "../layouts/Layout.astro";
             </div>
           ))
         }
+
+        <a
+          style="margin-top:0;margin-bottom:1rem;"
+          href="/testimonials"
+          class="cta-btn">Read more →</a
+        >
       </div>
     </Container>
   </section>
@@ -207,11 +208,13 @@ import Layout from "../layouts/Layout.astro";
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/lvDIp5Mr63w?si=PvJtsR8DirczFZ1n"
+          src="https://www.youtube-nocookie.com/embed/lvDIp5Mr63w?si=PvJtsR8DirczFZ1n"
           title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        >
+        </iframe>
       </div>
     </Container>
   </section>
@@ -521,6 +524,12 @@ import Layout from "../layouts/Layout.astro";
       color: var(--accent);
       font-weight: bold;
       font-size: 1rem;
+    }
+
+    .testimonials-cta-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0 0 0;
     }
 
     .fade {
