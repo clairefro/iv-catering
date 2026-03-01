@@ -187,3 +187,10 @@ a:hover {
   color: #b97a1a;
   text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  html,
+  p {
+    font-size: 15px !important;
+  }
+}

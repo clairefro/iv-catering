@@ -16,7 +16,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
         src="/assets/iovinos-logo.png"
         alt="Iovino's Catering"
         class="logo-banner"
-        style="margin-bottom:2rem;"
+        style="margin-bottom:1.2rem;"
         onload="this.style.opacity=1"
       />
 
@@ -31,7 +31,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
         Authentic Italian in Corvallis, Oregon
       </div>
 
-      <div style="font-size:0.9em;">
+      <div style="font-size:0.9em;" style="padding-bottom: 0;">
         <h2>Welcome!</h2>
         <p>
           I'm <strong>Regina Iovino</strong>, former chef and owner of <strong
@@ -87,7 +87,9 @@ const featuredTestimonials = await getFeaturedTestimonials();
         <div style="margin-bottom:2rem;">
           <p>Authentic Italian catering for any occasion</p>
           <p>Personalized menus and warm hospitality</p>
-          <p>Beautiful presentations and memorable experiences</p>
+          <p style="margin-bottom: 3rem;">
+            Beautiful presentations and memorable experiences
+          </p>
         </div>
 
         <div class="services-container">
@@ -152,8 +154,6 @@ const featuredTestimonials = await getFeaturedTestimonials();
       </div>
     </Container>
   </section>
-
-  <section class="services-section"></section>
 
   <section class="great-for-section highlighted">
     <Container>
@@ -285,7 +285,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
 
     section {
       margin: 1rem 0;
-      padding: 2rem 0;
+      padding: 1rem 0;
       text-align: center;
     }
     section.highlighted {
@@ -432,7 +432,6 @@ const featuredTestimonials = await getFeaturedTestimonials();
       flex-direction: column;
       align-items: center;
       flex: 1 1 auto;
-      height: 100%;
     }
     .service-desc {
       list-style: none;
@@ -489,7 +488,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
 
     .testimonials-section {
       background: var(--bg-highlight);
-      padding: 2.5rem 0 2rem 0;
+      padding: 1rem 0 2rem 0;
       text-align: center;
     }
     .testimonials-list {
@@ -512,7 +511,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
     }
 
     .video-section {
-      padding: 2.5rem 0;
+      padding: 0;
       text-align: center;
     }
     .video-container {
@@ -560,6 +559,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
         width: 100%;
         margin: 0 auto;
       }
+
       .service-card img {
         height: 300px;
       }

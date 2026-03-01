@@ -17,44 +17,45 @@ import Layout from "../layouts/Layout.astro";
   </div>
   <Container>
     <a href="/" class="back-link">← Back to Home</a>
-    <h1 style="margin-top: 1.5rem;">Contact</h1>
-    <p>
-      Get in touch with me for catering questions, menu selections, or bookings!
-    </p>
-    <ul>
-      <li>Email: regina@iovinos-catering.com</li>
-      <li>Phone: (541) 908-9544</li>
-    </ul>
-    <div class="menu-cta-wrapper">
-      <a href="/menu" class="cta-btn menu-cta">View Menu</a>
+    <div style="text-align: center;">
+      <h1 style="margin-top: 1.5rem;">Contact</h1>
+      <p>
+        Get in touch with me for catering questions, menu selections, or
+        bookings!
+      </p>
+      <p>Email: regina@iovinos-catering.com</p>
+      <p>Phone: (541) 908-9544</p>
     </div>
-
-    <h2 style="text-align:center;">For questions and quotes</h2>
-    <form id="contactForm">
-      <label>
-        Full Name*
-        <input type="text" name="name" required />
-      </label>
-      <label>
-        Email*
-        <input type="email" name="email" required />
-      </label>
-      <label>
-        Phone Number
-        <input type="tel" name="phone" placeholder="(555) 555-5555" />
-      </label>
-      <label>
-        Message*
-        <textarea name="message" required rows="6"></textarea>
-      </label>
-      <label class="checkbox-label">
-        <input type="checkbox" id="notRobot" required />
-        I'm a human
-      </label>
-      <button type="submit" id="contactSubmitBtn">Send</button>
-    </form>
-    <div id="formStatus"></div>
   </Container>
+  <div class="menu-cta-wrapper">
+    <a href="/menu" class="cta-btn menu-cta">View Menu</a>
+  </div>
+
+  <h2 style="text-align:center;">Get in Touch</h2>
+  <form id="contactForm">
+    <label>
+      Full Name*
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Email*
+      <input type="email" name="email" required />
+    </label>
+    <label>
+      Phone Number
+      <input type="tel" name="phone" placeholder="(555) 555-5555" />
+    </label>
+    <label>
+      Message*
+      <textarea name="message" required rows="6"></textarea>
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="notRobot" required />
+      I'm a human
+    </label>
+    <button type="submit" id="contactSubmitBtn">Send</button>
+  </form>
+  <div id="formStatus"></div>
 </Layout>
 
 <script>
