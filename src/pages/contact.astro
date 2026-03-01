@@ -31,31 +31,33 @@ import Layout from "../layouts/Layout.astro";
     <a href="/menu" class="cta-btn menu-cta">View Menu</a>
   </div>
 
-  <h2 style="text-align:center;">Get in Touch</h2>
-  <form id="contactForm">
-    <label>
-      Full Name*
-      <input type="text" name="name" required />
-    </label>
-    <label>
-      Email*
-      <input type="email" name="email" required />
-    </label>
-    <label>
-      Phone Number
-      <input type="tel" name="phone" placeholder="(555) 555-5555" />
-    </label>
-    <label>
-      Message*
-      <textarea name="message" required rows="6"></textarea>
-    </label>
-    <label class="checkbox-label">
-      <input type="checkbox" id="notRobot" required />
-      I'm a human
-    </label>
-    <button type="submit" id="contactSubmitBtn">Send</button>
-  </form>
-  <div id="formStatus"></div>
+  <Container>
+    <h2 style="text-align:center;">Get in Touch</h2>
+    <form id="contactForm">
+      <label>
+        Full Name*
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Email*
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Phone Number
+        <input type="tel" name="phone" placeholder="(555) 555-5555" />
+      </label>
+      <label>
+        Message*
+        <textarea name="message" required rows="6"></textarea>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="notRobot" required />
+        I'm a human
+      </label>
+      <button type="submit" id="contactSubmitBtn">Send</button>
+    </form>
+    <div id="formStatus"></div>
+  </Container>
 </Layout>
 
 <script>
