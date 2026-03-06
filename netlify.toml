@@ -9,9 +9,3 @@
   status = 301
   force = true
 
-# Strip trailing slashes
-[[redirects]]
-  from = "/*/"
-  to = "/:splat"
-  status = 301
-  force = false
