@@ -9,3 +9,9 @@
   status = 301
   force = true
 
+# Remove trailing slashes
+[[redirects]]
+  from = "/*/"
+  to = "/:splat"
+  status = 301
+  force = true
