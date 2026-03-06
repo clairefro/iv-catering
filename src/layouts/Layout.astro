@@ -3,6 +3,9 @@ import "../assets/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+
+const canonicalURL = new URL(Astro.url.pathname, "https://iovinos-catering.com")
+  .href;
 ---
 
 <!doctype html>
@@ -25,7 +28,7 @@ import { ClientRouter } from "astro:transitions";
       name="keywords"
       content="Corvallis catering, Italian catering Corvallis, event catering Corvallis, wedding catering Corvallis, party catering Corvallis, corporate catering Corvallis, best catering Corvallis, Italian food catering Corvallis, local catering services Corvallis, Corvallis Oregon catering company, full-service catering Corvallis, affordable catering Corvallis, catering for weddings and events Corvallis, authentic Italian catering Corvallis"
     />
-    <link rel="canonical" href="https://iovinos-catering.com" />
+    <link rel="canonical" href={canonicalURL} />
 
     <script type="application/ld+json">
       {
@@ -64,7 +67,7 @@ import { ClientRouter } from "astro:transitions";
       property="og:description"
       content="Authentic Italian catering in Corvallis, Oregon. Weddings, events, parties, and more. Contact Iovino's Catering for delicious, memorable food and service."
     />
-    <meta property="og:url" content="https://iovinos-catering.com/" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content="/assets/iovinos-og.png" />
     {/* OpenGraph: Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
