@@ -4,7 +4,7 @@
 
 # Redirect .netlify.app to custom domain
 [[redirects]]
-  from = "https://*.netlify.app/*"
+  from = "https://iovinos-catering.netlify.app/*"
   to = "https://iovinos-catering.com/:splat"
   status = 301
   force = true

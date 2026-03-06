@@ -5,5 +5,5 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://iovinos-catering.com",
   integrations: [sitemap()],
-  trailingSlash: "always",
+  trailingSlash: "never",
 });
