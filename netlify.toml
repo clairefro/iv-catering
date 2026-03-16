@@ -9,3 +9,23 @@
   status = 301
   force = true
 
+# Redirect www to non-www
+[[redirects]]
+  from = "https://www.iovinos-catering.com/*"
+  to = "https://iovinos-catering.com/:splat"
+  status = 301
+  force = true
+
+# Redirect http to https
+[[redirects]]
+  from = "http://iovinos-catering.com/*"
+  to = "https://iovinos-catering.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.iovinos-catering.com/*"
+  to = "https://iovinos-catering.com/:splat"
+  status = 301
+  force = true
+
