@@ -8,9 +8,16 @@ entries.sort((a, b) => {
   const bTime = b.data.date ? b.data.date.getTime() : 0;
   return bTime - aTime;
 });
+
+// Build Netlify Image CDN URLs: thumbnail for grid, larger for lightbox
+function netlifyImg(path: string, width: number) {
+  return `/.netlify/images?url=${encodeURIComponent(path)}&w=${width}&fit=cover&fm=webp`;
+}
+
 const images = entries.map((e) => ({
   title: e.data.title,
-  image: e.data.image,
+  thumb: netlifyImg(e.data.image, 600),
+  full: netlifyImg(e.data.image, 1400),
 }));
 ---
 
@@ -23,12 +30,13 @@ const images = entries.map((e) => ({
             <div class="gallery-img-container">
               <span class="gallery-spinner" aria-label="Loading image" />
               <img
-                src={img.image}
+                src={img.thumb}
                 alt={img.title || `Iovino's Catering gallery image ${idx + 1}`}
-                width={800}
+                width={600}
                 height={600}
                 class="gallery-img"
-                loading="lazy"
+                loading={idx < 3 ? "eager" : "lazy"}
+                decoding={idx < 3 ? "auto" : "async"}
                 onload="this.previousElementSibling.style.display='none'; this.style.opacity=1;"
                 style="opacity:0; transition:opacity 0.3s;"
               />
@@ -41,12 +49,12 @@ const images = entries.map((e) => ({
                 <span>&#x2039;</span>
               </button>
               <img
-                src={img.image}
+                src={img.full}
                 alt={img.title || `Gallery image ${idx + 1}`}
-                width={800}
-                height={600}
+                width={1400}
+                height={1050}
                 class="gallery-img-full"
-                max-height="90vh"
+                loading="lazy"
                 style="background-color: rgba(0,0,0,0.6); cursor:default;"
               />
               <button
