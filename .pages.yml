@@ -10,7 +10,7 @@ content:
     fields:
       - name: body
         label: Menu Content
-        type: rich-text
+        type: markdown
 
   - name: testimonials
     label: Testimonials

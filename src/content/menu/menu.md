@@ -1,5 +1,4 @@
 ---
-# Menu content — edit this in the PagesCMS admin panel
 ---
 
 ### Platter Buffets
