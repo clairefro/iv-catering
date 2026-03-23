@@ -49,4 +49,5 @@ content:
       - name: date
         label: Date Added
         type: date
+        default: today
         description: "This controls the order photos appear — newer dates show first."
