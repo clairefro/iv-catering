@@ -27,6 +27,7 @@ content:
       - name: quote
         label: Quote
         type: text
+        required: true
 
   - name: gallery
     label: Gallery
