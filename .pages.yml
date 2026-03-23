@@ -11,6 +11,7 @@ content:
       - name: body
         label: Menu Content
         type: rich-text
+        description: "The full menu shown on the Menu page. Use headings to separate sections (e.g. Antipasti, Primi). Changes go live after ~1 minute."
 
   - name: testimonials
     label: Testimonials
@@ -21,12 +22,15 @@ content:
         label: Author
         type: string
         required: true
+        description: "Customer name as it should appear on the site"
       - name: isFeatured
         label: Featured on Homepage
         type: boolean
+        description: "Check this to show the testimonial on the homepage. Testimonials that are featured will also appear at top on Testimonials page"
       - name: quote
         label: Quote
         type: text
+        description: "The customer's review"
 
   - name: gallery
     label: Gallery
@@ -37,9 +41,12 @@ content:
         label: Title
         type: string
         required: true
+        description: 'A short description of the photo (e.g. "Watermelon platter"). Not shown publicly — used for accessibility and internal use.'
       - name: image
         label: Image
         type: image
+        description: "Upload a photo. JPG or WebP format recommended for speed."
       - name: date
         label: Date Added
         type: date
+        description: "This controls the order photos appear — newer dates show first."
