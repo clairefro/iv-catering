@@ -1,8 +1,6 @@
 ---
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-
 interface Props {
-  quote: any;
+  quote: string;
   author: string;
   charLimit?: number;
   collapsedHeight?: number;
@@ -10,9 +8,13 @@ interface Props {
 
 const { quote, author, charLimit = 420, collapsedHeight = 200 } = Astro.props;
 
-const html = documentToHtmlString(quote);
-const plainText = html.replace(/<[^>]*>/g, "");
-const isLong = plainText.length > charLimit;
+// Convert plain text paragraphs to HTML
+const html = quote
+  .split(/\n\n+/)
+  .filter(Boolean)
+  .map((p) => `<p>${p.trim().replace(/\n/g, "<br>")}</p>`)
+  .join("");
+const isLong = quote.length > charLimit;
 ---
 
 <div class="testimonial-card">

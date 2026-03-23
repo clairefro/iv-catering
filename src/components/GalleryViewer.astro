@@ -1,7 +1,9 @@
 ---
-import { getGalleryImages } from "../content/contentfulService.js";
+import { getCollection } from "astro:content";
 
-const images = await getGalleryImages();
+const entries = await getCollection("gallery");
+entries.sort((a, b) => a.data.order - b.data.order);
+const images = entries.map((e) => ({ title: e.data.title, image: e.data.image }));
 ---
 
 <section class="gallery-section">
