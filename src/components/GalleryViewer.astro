@@ -10,14 +10,15 @@ entries.sort((a, b) => {
 });
 
 // Build Netlify Image CDN URLs: thumbnail for grid, larger for lightbox
-function netlifyImg(path: string, width: number) {
-  return `/.netlify/images?url=${encodeURIComponent(path)}&w=${width}&fit=cover&fm=webp`;
+function netlifyImg(path: string, width: number, square = false) {
+  const params = `w=${width}&fm=webp${square ? "&h=" + width + "&fit=cover" : ""}`;
+  return `/.netlify/images?url=${encodeURIComponent(path)}&${params}`;
 }
 
 const images = entries.map((e) => ({
   title: e.data.title,
-  thumb: netlifyImg(e.data.image, 600),
-  full: netlifyImg(e.data.image, 1400),
+  thumb: netlifyImg(e.data.image, 600),        // just resize width, CSS handles square crop
+  full: netlifyImg(e.data.image, 1400, false),
 }));
 ---
 
