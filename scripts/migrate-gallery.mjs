@@ -24,14 +24,16 @@ const env = Object.fromEntries(
     .map((l) => {
       const [k, ...v] = l.trim().split("=");
       return [k.trim(), v.join("=").trim()];
-    })
+    }),
 );
 
 const SPACE_ID = env.CONTENTFUL_SPACE_ID;
 const ACCESS_TOKEN = env.CONTENTFUL_ACCESS_TOKEN;
 
 if (!SPACE_ID || !ACCESS_TOKEN) {
-  console.error("Missing CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN in .env");
+  console.error(
+    "Missing CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN in .env",
+  );
   process.exit(1);
 }
 
@@ -51,18 +53,22 @@ function slugify(str) {
 function downloadFile(url, dest) {
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(dest);
-    https.get(url, (res) => {
-      // Follow redirect
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        file.close();
-        return downloadFile(res.headers.location, dest).then(resolve).catch(reject);
-      }
-      res.pipe(file);
-      file.on("finish", () => file.close(resolve));
-    }).on("error", (err) => {
-      fs.unlink(dest, () => {});
-      reject(err);
-    });
+    https
+      .get(url, (res) => {
+        // Follow redirect
+        if (res.statusCode === 301 || res.statusCode === 302) {
+          file.close();
+          return downloadFile(res.headers.location, dest)
+            .then(resolve)
+            .catch(reject);
+        }
+        res.pipe(file);
+        file.on("finish", () => file.close(resolve));
+      })
+      .on("error", (err) => {
+        fs.unlink(dest, () => {});
+        reject(err);
+      });
   });
 }
 
@@ -84,7 +90,7 @@ async function main() {
 
   // Sort by updatedAt descending (same as original service)
   entries.items.sort(
-    (a, b) => new Date(b.sys.updatedAt) - new Date(a.sys.updatedAt)
+    (a, b) => new Date(b.sys.updatedAt) - new Date(a.sys.updatedAt),
   );
 
   const usedSlugs = new Set();
