@@ -9,16 +9,17 @@ entries.sort((a, b) => {
   return bTime - aTime;
 });
 
-// Build Netlify Image CDN URLs: thumbnail for grid, larger for lightbox
-function netlifyImg(path: string, width: number, square = false) {
-  const params = `w=${width}&fm=webp${square ? "&h=" + width + "&fit=cover" : ""}`;
-  return `/.netlify/images?url=${encodeURIComponent(path)}&${params}`;
+// Netlify Image CDN only works in production; fall back to raw path in dev
+const isProd = import.meta.env.PROD;
+function netlifyImg(path: string, width: number) {
+  if (!isProd) return path;
+  return `/.netlify/images?url=${encodeURIComponent(path)}&w=${width}&fm=webp`;
 }
 
 const images = entries.map((e) => ({
   title: e.data.title,
-  thumb: netlifyImg(e.data.image, 600),        // just resize width, CSS handles square crop
-  full: netlifyImg(e.data.image, 1400, false),
+  thumb: netlifyImg(e.data.image, 600), // just resize width, CSS handles square crop
+  full: netlifyImg(e.data.image, 1400),
 }));
 ---
 
