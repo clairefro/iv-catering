@@ -2,9 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/Container.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
-import { getTestimonials } from "../content/contentfulService.js";
+import { getCollection } from "astro:content";
 
-const testimonials = await getTestimonials();
+const entries = await getCollection("testimonials");
+entries.sort((a, b) =>
+  b.data.isFeatured === a.data.isFeatured ? 0 : b.data.isFeatured ? 1 : -1,
+);
 ---
 
 <Layout>
@@ -14,11 +17,11 @@ const testimonials = await getTestimonials();
       <h1 style="margin-top:1rem;">Testimonials</h1>
       <div class="testimonials-list">
         {
-          testimonials && testimonials.length > 0 ? (
-            testimonials.map((testimonial: any) => (
+          entries.length > 0 ? (
+            entries.map((entry) => (
               <TestimonialCard
-                quote={testimonial.quote}
-                author={testimonial.author}
+                quote={entry.data.quote}
+                author={entry.data.author}
                 charLimit={420}
                 collapsedHeight={270}
               />

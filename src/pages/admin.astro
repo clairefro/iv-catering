@@ -23,8 +23,7 @@ import Container from "../components/Container.astro";
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function () {
       const secretZero = document.querySelector(".admin-secret-zero");
-      const secretUrl =
-        "https://app.contentful.com/spaces/dzohsh5fpsgf/views/entries";
+      const secretUrl = "https://app.pagescms.org";
       if (secretZero) {
         secretZero.addEventListener("click", function (e) {
           window.open(secretUrl, "_blank", "noopener,noreferrer");

@@ -1,12 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/Container.astro";
+import { getCollection, render } from "astro:content";
 
-import { getMenuRichText } from "../content/contentfulService.js";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-
-const menuRichText: any = await getMenuRichText();
-const html = documentToHtmlString(menuRichText);
+const entries = await getCollection("menu");
+const menuEntry = entries[0] ?? null;
+const { Content } = menuEntry ? await render(menuEntry) : { Content: null };
 ---
 
 <Layout>
@@ -14,9 +13,9 @@ const html = documentToHtmlString(menuRichText);
     <a href="/" class="back-link">← Back to Home</a>
     <section>
       <h1>Menu</h1>
-      {menuRichText ? <div set:html={html} /> : <p>Coming soon...</p>}
+      {menuEntry && Content ? <Content /> : <p>Coming soon...</p>}
       <div class="menu-cta-wrapper">
-        <a href="/contact" class="cta-btn menu-cta">Get a Quote</a>
+        <a href="/contact/" class="cta-btn menu-cta">Get a Quote</a>
       </div>
     </section>
   </Container>

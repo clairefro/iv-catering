@@ -1,10 +1,13 @@
 ---
 import Container from "../components/Container.astro";
 import Layout from "../layouts/Layout.astro";
-import { getFeaturedTestimonials } from "../content/contentfulService.js";
+import { getCollection } from "astro:content";
 import TestimonialCard from "../components/TestimonialCard.astro";
 
-const featuredTestimonials = await getFeaturedTestimonials();
+const featuredTestimonials = await getCollection(
+  "testimonials",
+  ({ data }) => data.isFeatured,
+);
 ---
 
 <Layout>
@@ -64,9 +67,9 @@ const featuredTestimonials = await getFeaturedTestimonials();
         />
       </div>
       <div class="home-links">
-        <a href="/menu">View Menu</a>
-        <a href="/gallery">See Gallery</a>
-        <a href="/contact">Contact</a>
+        <a href="/menu/">View Menu</a>
+        <a href="/gallery/">See Gallery</a>
+        <a href="/contact/">Contact</a>
       </div>
     </Container>
   </section>
@@ -104,7 +107,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
                     "Italian dishes delivered, ready to serve",
                     "Perfect for office lunches, parties, and family gatherings",
                   ],
-                  cta: { label: "Order Platters", link: "/contact" },
+                  cta: { label: "Order Platters", link: "/contact/" },
                 },
                 {
                   image: "/assets/iprepyoubake.webp",
@@ -114,7 +117,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
                     "Personalized menu, delivered to you",
                     "Enjoy fresh-from-the-oven flavor at home—just heat and serve!",
                   ],
-                  cta: { label: "Order Meals", link: "/contact" },
+                  cta: { label: "Order Meals", link: "/contact/" },
                 },
                 {
                   image: "/assets/regina-onsite-chef.webp",
@@ -123,7 +126,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
                     "Regina cooks and serves at your event",
                     "Personalized menu planning",
                   ],
-                  cta: { label: "Book Chef", link: "/contact" },
+                  cta: { label: "Book Chef", link: "/contact/" },
                 },
                 // Add more service objects here as needed
               ];
@@ -177,10 +180,10 @@ const featuredTestimonials = await getFeaturedTestimonials();
       <div class="testimonials-list">
         {
           featuredTestimonials && featuredTestimonials.length > 0 ? (
-            featuredTestimonials.map((testimonial: any) => (
+            featuredTestimonials.map((entry) => (
               <TestimonialCard
-                quote={testimonial.quote}
-                author={testimonial.author}
+                quote={entry.data.quote}
+                author={entry.data.author}
                 charLimit={500}
                 collapsedHeight={270}
               />
@@ -192,7 +195,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
       </div>
       <a
         style="margin-top:0;margin-bottom:1rem;"
-        href="/testimonials"
+        href="/testimonials/"
         class="cta-btn">Read more →</a
       >
     </Container>
@@ -219,7 +222,7 @@ const featuredTestimonials = await getFeaturedTestimonials();
   <section>
     <Container>
       <div class="home-cta">
-        <a href="/contact" class="cta-btn">Get in Touch</a>
+        <a href="/contact/" class="cta-btn">Get in Touch</a>
         <p>For catering questions, menu selections, or bookings</p>
       </div>
     </Container>
