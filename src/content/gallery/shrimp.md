@@ -1,5 +1,5 @@
 ---
 title: "shrimp"
-image: "/uploads/gallery/shrimp.jpg"
+image: "/uploads/gallery/shrimp.webp"
 order: 8
 ---

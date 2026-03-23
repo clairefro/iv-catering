@@ -1,5 +1,5 @@
 ---
 title: "platter-with-flowers"
-image: "/uploads/gallery/platter-with-flowers.jpg"
+image: "/uploads/gallery/platter-with-flowers.webp"
 order: 3
 ---

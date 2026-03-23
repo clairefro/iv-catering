@@ -1,5 +1,5 @@
 ---
 title: "platter-spread-red"
-image: "/uploads/gallery/platter-spread-red.jpg"
+image: "/uploads/gallery/platter-spread-red.webp"
 order: 4
 ---
