@@ -19,7 +19,7 @@ const gallery = defineCollection({
   schema: z.object({
     title: z.string(),
     image: z.string(),
-    order: z.number().default(99),
+    date: z.coerce.date().optional(),
   }),
 });
 

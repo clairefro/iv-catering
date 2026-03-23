@@ -2,7 +2,12 @@
 import { getCollection } from "astro:content";
 
 const entries = await getCollection("gallery");
-entries.sort((a, b) => a.data.order - b.data.order);
+// Sort by date descending (most recently added first); entries without a date go last
+entries.sort((a, b) => {
+  const aTime = a.data.date ? a.data.date.getTime() : 0;
+  const bTime = b.data.date ? b.data.date.getTime() : 0;
+  return bTime - aTime;
+});
 const images = entries.map((e) => ({
   title: e.data.title,
   image: e.data.image,

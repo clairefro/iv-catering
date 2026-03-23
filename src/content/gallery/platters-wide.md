@@ -1,5 +1,5 @@
 ---
 title: "platters wide"
 image: "/uploads/gallery/platters-wide.webp"
-order: 5
+date: "2026-03-23"
 ---

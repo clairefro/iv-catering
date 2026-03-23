@@ -1,5 +1,5 @@
 ---
 title: "regina"
 image: "/uploads/gallery/regina.webp"
-order: 1
+date: "2026-03-23"
 ---

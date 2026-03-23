@@ -41,6 +41,6 @@ content:
       - name: image
         label: Image
         type: image
-      - name: order
-        label: Display Order
-        type: number
+      - name: date
+        label: Date Added
+        type: date
