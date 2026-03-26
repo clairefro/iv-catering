@@ -11,7 +11,7 @@ content:
       - name: body
         label: Menu Content
         type: rich-text
-        description: "The full menu shown on the Menu page. Use headings to separate sections (e.g. Antipasti, Primi). Changes go live after ~1 minute."
+        description: "The full menu shown on the Menu page. Type backslash ('/') to access formatting options like headings. Changes go live after ~1 minute."
 
   - name: testimonials
     label: Testimonials
