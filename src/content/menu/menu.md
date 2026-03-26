@@ -76,4 +76,4 @@ A 50% Deposit along with your confirmed guest count is due two weeks prior to ev
 
 Staff working your event - $20.00 per hour (includes traveling time)
 
-No mileage charge for events within a 25 mile radius (.85 cents per mile if exceeds 25 miles).
+No mileage charge for events within a 25 mile radius (.85 cents per mile if exceeds 25 miles)
